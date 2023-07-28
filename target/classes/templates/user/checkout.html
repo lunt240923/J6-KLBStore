@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/user/user}">
+<head>
+  <title>KLB Store</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="breadcrumb-area">
+            <div class="container">
+                <div class="breadcrumb-content">
+                    <ul>
+                        <li><a href="/user/index">Trang chủ</a></li>
+                        <li class="active">Thanh toán</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="checkout-area pt-60 pb-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="coupon-accordion">
+                            
+                            <h3>Bạn đã là khách hàng? <span id="showlogin">Nhấn vào đây để đăng nhập</span></h3>
+                            <div id="checkout-login" class="coupon-content">
+                                <div class="coupon-info">
+                                    <form action="#">
+                                        <p class="form-row-first">
+                                            <label>Tên đăng nhập hoặc email <span class="required">*</span></label>
+                                            <input type="text">
+                                        </p>
+                                        <p class="form-row-last">
+                                            <label>Mật khẩu  <span class="required">*</span></label>
+                                            <input type="text">
+                                        </p>
+                                        <p class="form-row">
+                                            <input value="Đăng nhập" type="submit">
+                                            <label>
+                                                <input type="checkbox">
+                                                 Ghi nhớ 
+                                            </label>
+                                        </p>
+                                        <p class="lost-password"><a href="#">Quên mật khẩu?</a></p>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            
+                            <h3>Bạn có mã giảm giá? <span id="showcoupon">Nhấn vào đây để nhập mã của bạn</span></h3>
+                            <div id="checkout_coupon" class="coupon-checkout-content">
+                                <div class="coupon-info">
+                                    <form action="#">
+                                        <p class="checkout-coupon">
+                                            <input placeholder="Mã giảm giá" type="text">
+                                            <input value="Áp dụng mã giảm giá" type="submit">
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <form action="#">
+                            <div class="checkbox-form">
+                                <h3>Chi tiết thanh toán</h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="country-select clearfix">
+                                            <label>Quốc gia <span class="required">*</span></label>
+                                            <select class="nice-select wide">
+                                              <option data-display="Việt Nam">Việt Nam</option>
+                                              <option value="uk">Anh</option>
+                                              <option value="rou">Romania</option>
+                                              <option value="fr">Pháp</option>
+                                              <option value="de">Đức</option>
+                                              <option value="aus">Úc</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Tên <span class="required">*</span></label>
+                                            <input placeholder="" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Họ <span class="required">*</span></label>
+                                            <input placeholder="" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="checkout-form-list">
+                                            <label>Tên công ty</label>
+                                            <input placeholder="" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="checkout-form-list">
+                                            <label>Địa chỉ <span class="required">*</span></label>
+                                            <input placeholder="Địa chỉ" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="checkout-form-list">
+                                            <input placeholder="Địa chỉ chi tiết" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="checkout-form-list">
+                                            <label>Thành phố <span class="required">*</span></label>
+                                            <input placeholder="Thành phố" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Tỉnh<span class="required">*</span></label>
+                                            <input placeholder="" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Mã bưu điện <span class="required">*</span></label>
+                                            <input placeholder="Mã bưu điện" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Email <span class="required">*</span></label>
+                                            <input placeholder="" type="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="checkout-form-list">
+                                            <label>Số điện thoại <span class="required">*</span></label>
+                                            <input placeholder="" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="checkout-form-list create-acc">
+                                            <input id="cbox" type="checkbox">
+                                            <label>Tạo tài khoản?</label>
+                                        </div>
+                                        <div id="cbox_info" class="checkout-form-list create-account">
+                                            <p>Tạo một tài khoản bằng cách nhập thông tin bên dưới. Nếu bạn là khách hàng cũ, vui lòng đăng nhập ở trên.</p>
+                                            <<label>Mật khẩu tài khoản <span class="required">*</span></label>
+                                            <input placeholder="Mật khẩu" type="password">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="different-address">
+                                    <div class="ship-different-title">
+                                        <h3>
+                                            <label>Giao hàng đến một địa chỉ khác?</label>
+                                            <input id="ship-box" type="checkbox">
+                                        </h3>
+                                    </div>
+                                    <div id="ship-box-info" class="row">
+                                        <div class="col-md-12">
+                                            <div class="country-select clearfix">
+                                                <label>Quốc gia <span class="required">*</span></label>
+                                                <select class="nice-select wide">
+                                                  <option data-display="Việt Nam">Việt Nam</option>
+                                                  <option value="uk">Anh</option>
+                                                  <option value="rou">Romania</option>
+                                                  <option value="fr">Pháp</option>
+                                                  <option value="de">Đức</option>
+                                                  <option value="aus">Úc</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="checkout-form-list">
+                                                <label>Tên <span class="required">*</span></label>
+                                                <input placeholder="" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="checkout-form-list">
+                                                <label>Họ <span class="required">*</span></label>
+                                                <input placeholder="" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="checkout-form-list">
+                                                <label>Địa chỉ <span class="required">*</span></label>
+                                                <input placeholder="Địa chỉ" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="checkout-form-list">
+                                                <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="checkout-form-list">
+                                                <label>Thành phố <span class="required">*</span></label>
+                                                <input placeholder="Thành phố" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="checkout-form-list">
+                                                <label>Tỉnh / Hạt <span class="required">*</span></label>
+                                                <input placeholder="" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="checkout-form-list">
+                                                <label>Mã bưu điện <span class="required">*</span></label>
+                                                <input placeholder="Mã bưu điện" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="checkout-form-list">
+                                                <label>Email <span class="required">*</span></label>
+                                                <input placeholder="" type="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="checkout-form-list">
+                                                <label>Số điện thoại <span class="required">*</span></label>
+                                                <input placeholder="" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="order-notes">
+                                        <div class="checkout-form-list">
+                                            <label>Ghi chú đơn hàng</label>
+                                            <textarea id="checkout-mess" cols="30" rows="10" placeholder="Ghi chú về đơn hàng của bạn, ví dụ: lưu ý đặc biệt cho giao hàng."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="your-order">
+                            <h3>Đơn hàng của bạn</h3>
+                            <div class="your-order-table table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="product-name">Sản phẩm</th>
+                                            <th class="product-total">Tổng cộng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="cart_item">
+                                            <td class="product-name">
+                                                Iphone 14 Pro Max 1TB <strong class="product-quantity">× 1</strong>
+                                            </td>
+                                            <td class="product-total">
+                                                <span class="amount">37.990.000₫</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="cart_item">
+                                            <td class="product-name">
+                                                Samsung Galaxy S23 Ultra 1TB <strong class="product-quantity">× 1</strong>
+                                            </td>
+                                            <td class="product-total">
+                                                <span class="amount">36.990.000₫</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="cart-subtotal">
+                                            <th>Tổng phụ</th>
+                                            <td><span class="amount">74.980.000₫</span></td>
+                                        </tr>
+                                        <tr class="order-total">
+                                            <th>Tổng cộng</th>
+                                            <td><strong><span class="amount">74.980.000₫</span></strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="payment-method">
+                                <div class="payment-accordion">
+                                    
+                                    <h3>Hình thức thanh toán</h3>
+                                    <div class="accordion">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h5><a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Thanh toán khi giao hàng</a></h5>
+                                            </div>
+                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Thanh toán khi nhận hàng.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="headingTwo">
+                                                <h5><a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Chuyển khoản ngân hàng</a></h5>
+                                            </div>
+                                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Chuyển tiền trực tiếp vào tài khoản ngân hàng.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-header" id="headingThree">
+                                                <h5><a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Thanh toán qua thẻ</a></h5>
+                                            </div>
+                                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <p>Thanh toán qua thẻ ngân hàng.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-button-payment">
+                                    <input value="Đặt hàng" type="submit">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KLB Store</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/user/images/menu/logo/logo.svg" />
+
+  <link rel="stylesheet" href="/assets/user/css/material-design-iconic-font.min.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/font-awesome.min.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/fontawesome-stars.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/meanmenu.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/owl.carousel.min.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/slick.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/animate.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/jquery-ui.min.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/venobox.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/nice-select.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/magnific-popup.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/bootstrap.min.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/helper.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/style.css" />
+
+  <link rel="stylesheet" href="/assets/user/css/responsive.css" />
+
+  <script src="/assets/user/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+  <div class="body-wrapper">
+    <header layout:fragment="header" th:replace="~{/user/header}"></header>
+    <div layout:fragment="content"></div>
+    <footer layout:fragment="footer" th:replace="~{/user/footer}"></footer>
+    <div class="modal fade modal-wrapper" id="exampleModalCenter" th:if="${quickView != null}">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-inner-area row">
+              <div class="col-lg-5 col-md-6 col-sm-6">
+                <div class="product-details-left">
+                  <div class="product-details-images slider-navigation-1">
+                    <div class="lg-image" th:each="mauSac : ${quickView.sanPhamMauSacs}">
+                      <img th:src="${mauSac.duongDanAnh}" alt="product image" />
+                    </div>
+                  </div>
+                  <div class="product-details-thumbs slider-thumbs-1"
+                    data-mauSacSize="${quickView.sanPhamMauSacs.size()}">
+                    <div class="sm-image" th:each="mauSac : ${quickView.sanPhamMauSacs}"
+                      th:data-mau-sac-id="${mauSac.mauSacId}">
+                      <img th:src="${mauSac.duongDanAnh}" alt="product image thumb" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-7 col-md-6 col-sm-6">
+                <div class="product-details-view-content pt-60">
+                  <div class="product-info">
+                    <h2 th:text="${quickView.tenSanPham}"></h2>
+                    <span class="product-details-ref" th:text="'Xuất sứ: ' + ${quickView.xuatSu}"></span>
+                    <div class="rating-box pt-20">
+                      <ul class="rating rating-with-review-item">
+                        <th:block th:with="totalStars=${#numbers.sequence(1, 5)}">
+                          <th:block th:with="totalRatings=${#lists.size(quickView.sanPhamDanhGias)}">
+                            <th:block th:with="totalStarsCount=0">
+                              <th:block th:each="danhGia : ${quickView.sanPhamDanhGias}">
+                                <th:block th:with="totalStarsCount=${totalStarsCount + danhGia.sao}">
+                                </th:block>
+                              </th:block>
+                            </th:block>
+                            <th:block th:with="averageRating=${totalRatings > 0 ? totalStarsCount / totalRatings : 0}">
+                              <th:block th:each="star : ${totalStars}">
+                                <li th:class="${averageRating >= star} ? 'filled-star' : 'no-star'">
+                                  <i class="fa fa-star"></i>
+                                </li>
+                              </th:block>
+                            </th:block>
+                          </th:block>
+                        </th:block>
+                      </ul>
+                    </div>
+                    <div class="price-box pt-20">
+                      <span class="new-price new-price-2"
+                        th:if="${quickView.giamGiaTrucTiep != null && quickView.giamGiaTrucTiep != 0}"
+                        th:text="${#numbers.formatDecimal(quickView.giaBan - (quickView.giamGiaTrucTiep/100 * quickView.giaBan), 0, 'COMMA', 0, 'POINT')} + ' ₫'"></span>
+                      <span class="new-price"
+                        th:unless="${quickView.giamGiaTrucTiep != null && quickView.giamGiaTrucTiep != 0}"
+                        th:text="${#numbers.formatDecimal(quickView.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></span>
+                      <span class="old-price"
+                        th:if="${quickView.giamGiaTrucTiep != null && quickView.giamGiaTrucTiep != 0}"
+                        th:text="${#numbers.formatDecimal(quickView.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"></span>
+                      <span class="discount-percentage"
+                        th:if="${quickView.giamGiaTrucTiep != null && quickView.giamGiaTrucTiep != 0}"
+                        th:text="'-' + ${#numbers.formatDecimal(quickView.giamGiaTrucTiep, 0, 'COMMA', 0, 'POINT')} + '%'"></span>
+                    </div>
+                    <div class="product-desc">
+                      <p>
+                        <span th:text="${quickView.moTa}"> </span>
+                      </p>
+                    </div>
+                    <div class="product-variants">
+                      <div class="produt-variants-size">
+                        <label>Màu sắc:</label>
+                        <select class="nice-select">
+                          <option th:each="mauSac : ${quickView.sanPhamMauSacs}" th:value="${mauSac.mauSacId}"
+                            th:text="${mauSac.tenMauSac}"></option>
+                        </select>
+                      </div>
+                      <div class="price-box pt-20">
+                        <span
+                          class="new-price new-price-2"
+                          th:if="${quickView.sanPhamGiamGiaTrucTieps != null && !quickView.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                        >
+                          <span
+                            th:with="giamGia = ${quickView.sanPhamGiamGiaTrucTieps[quickView.sanPhamGiamGiaTrucTieps.size() - 1]}"
+                          >
+                            <span
+                              th:if="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                            >
+                              <span
+                                th:text="${#numbers.formatDecimal(quickView.giaBan.subtract(quickView.giaBan.multiply(giamGia.giamGiaTrucTiep.divide(BigDecimal.valueOf(100)))), 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                              ></span>
+                            </span>
+                            <span
+                              th:unless="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                            >
+                              <span
+                                th:text="${#numbers.formatDecimal(quickView.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                              ></span>
+                            </span>
+                          </span>
+                        </span>
+                        <span
+                          class="new-price"
+                          th:unless="${quickView.sanPhamGiamGiaTrucTieps != null && !quickView.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                        >
+                          <span
+                            th:text="${#numbers.formatDecimal(quickView.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                          ></span>
+                        </span>
+                        <span
+                          class="old-price"
+                          th:if="${quickView.sanPhamGiamGiaTrucTieps != null && !quickView.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                        >
+                          <span
+                            th:with="giamGia = ${quickView.sanPhamGiamGiaTrucTieps[quickView.sanPhamGiamGiaTrucTieps.size() - 1]}"
+                          >
+                            <span
+                              th:if="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                            >
+                              <span
+                                th:text="${#numbers.formatDecimal(quickView.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                              ></span>
+                            </span>
+                          </span>
+                        </span>
+                      </div>
+                      <div class="product-desc">
+                        <p>
+                          <span th:text="${quickView.moTa}"> </span>
+                        </p>
+                      </div>
+                      <div class="product-variants">
+                        <div class="produt-variants-size">
+                          <label>Màu sắc:</label>
+                          <select class="nice-select">
+                            <option
+                              th:each="mauSac : ${quickView.sanPhamMauSacs}"
+                              th:value="${mauSac.mauSacId}"
+                              th:text="${mauSac.tenMauSac}"
+                            ></option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="single-add-to-cart">
+                        <form action="#" class="cart-quantity">
+                          <div class="quantity">
+                            <label>Số lượng</label>
+                            <div class="cart-plus-minus">
+                              <input
+                                class="cart-plus-minus-box"
+                                value="1"
+                                type="text"
+                              />
+                              <div class="dec qtybutton">
+                                <i class="fa fa-angle-down"></i>
+                              </div>
+                              <div class="inc qtybutton">
+                                <i class="fa fa-angle-up"></i>
+                              </div>
+                            </div>
+                          </div>
+                          <button
+                            class="add-to-cart"
+                            type="submit"
+                            th:data-color-id="${quickView.sanPhamMauSacs[0].mauSacId}"
+                          >
+                            Thêm vào giỏ
+                          </button>
+                        </form>
+                      </div>
+                      <div class="product-additional-info pt-25">
+                        <a class="wishlist-btn" href="/user/wishlist"
+                          ><i class="fa fa-heart-o"></i>Thêm yêu thích</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/assets/user/js/vendor/jquery-1.12.4.min.js"></script>
+    <script>
+      $(document).on(
+        "click",
+        ".nice-select .option:not(.disabled)",
+        function (event) {
+          var selectedValue = $(this).data("value");
+          $('[data-mau-sac-id="' + selectedValue + '"]').click();
+          $(".add-to-cart").attr("data-color-id", selectedValue);
+        }
+      );
+      $(".cart-plus-minus-box").on("input", function () {
+        var $input = $(this);
+        var quantity = $input.val();
+        if (isNaN(quantity) || quantity < 1) {
+          return;
+        }
+        var colorId = $input
+          .closest("tr")
+          .find(".li-product-color .color")
+          .data("color-id");
+        $.ajax({
+          url: "/cart/update",
+          method: "POST",
+          data: { colorId: colorId, quantity: quantity },
+          dataType: "json",
+          success: function (response) {
+            if (response.success) {
+              var total = response.total;
+              var price = response.giaBan;
+              var sale = response.giamGiaTrucTiep;
+              var quantity = response.soLuong;
+              var subtotal;
+              if (isNaN(sale) || sale < 1) {
+                subtotal = price * quantity;
+              } else {
+                subtotal = (price - sale * price) * quantity;
+              }
+              $(".total-amount").text(total);
+              $(".gia-ban").text(price);
+              $(".so-luong").text(quantity);
+              $input
+                .closest("tr")
+                .find(".product-subtotal .amount")
+                .text(formatCurrency(subtotal));
+              var subtotalValue = formatCurrency(total);
+              $(".cart-page-total ul li:first-child span").text(subtotalValue);
+              var totalValue = formatCurrency(total);
+              $(".cart-page-total ul li:nth-child(2) span").text(totalValue);
+              $(".hm-minicart .item-text").text(formatCurrency(total));
+            } else {
+              alert(response.message);
+            }
+          },
+          error: function (xhr, status, error) {
+            console.log(error);
+          },
+        });
+      });
+      function formatCurrency(number) {
+        return new Intl.NumberFormat("vi-VN", {
+          style: "currency",
+          currency: "VND",
+        }).format(number);
+      }
+      $(document).on("submit", ".cart-quantity", function (event) {
+        event.preventDefault();
+        var quantity = $(this).find(".cart-plus-minus-box").val();
+        addToCart($(".add-to-cart").data("color-id"), quantity);
+      });
+      function openQuickViewModal(sanPhamId) {
+        $.ajax({
+          url: "/product/quick-view/" + sanPhamId,
+          type: "GET",
+          success: function (response) {
+            if ($("#exampleModalCenter").length) {
+              $("#exampleModalCenter").remove();
+            }
+            var newContent = $(response).find("#exampleModalCenter");
+            newContent.insertAfter(".footer");
+            var slickScript = document.createElement("script");
+            slickScript.src = "/assets/user/js/main.js";
+            document.head.appendChild(slickScript);
+            var imageCount = $("#exampleModalCenter img").length;
+            var loadedCount = 0;
+            function checkAllImagesLoaded() {
+              loadedCount++;
+              if (loadedCount === imageCount) {
+                $("#exampleModalCenter").modal("show");
+              }
+            }
+            $("#exampleModalCenter img")
+              .on("load", function () {
+                checkAllImagesLoaded();
+              })
+              .on("error", function () {
+                checkAllImagesLoaded();
+              });
+          },
+          error: function (xhr, status, error) {
+            console.log(error);
+          },
+        });
+      }
+      $(document).on("click", ".add-cart", function (event) {
+        event.preventDefault();
+        var colorId = $(this).data("color-id");
+        addToCart(colorId);
+      });
+      function addToCart(colorId, quantity) {
+        $.ajax({
+          url: "/cart/add",
+          method: "POST",
+          data: { colorId: colorId, quantity: quantity },
+          success: function (response) {
+            var cart = $(response).find(".header-middle-right");
+            $(".header-middle-right").replaceWith(cart);
+          },
+          error: function (xhr, status, error) {
+            console.error("Lỗi:", error);
+          },
+        });
+      }
+      function changeSortBy(value) {
+        var url = window.location.href;
+        var separator = url.indexOf("?") !== -1 ? "&" : "?";
+        if (url.includes("sortBy=")) {
+          url = url.replace(/(sortBy=)[^\&]+/, "$1" + value);
+        } else {
+          url = url + separator + "sortBy=" + value;
+        }
+        if (url.includes("p=")) {
+          url = url.replace(/(p=)[^\&]+/, "$1" + 1);
+        } else {
+          url = url + "&p=1";
+        }
+
+        window.location.href = url;
+      }
+    </script>
+    <script src="/assets/user/js/vendor/popper.min.js"></script>
+
+
+    function formatCurrency(number) {
+      return new Intl.NumberFormat("vi-VN", {
+        style: "currency",
+        currency: "VND",
+      }).format(number);
+    }
+
+    $(document).on("submit", ".cart-quantity", function (event) {
+      event.preventDefault();
+      var quantity = $(this).find(".cart-plus-minus-box").val();
+      addToCart($(".add-to-cart").data("color-id"), quantity);
+    });
+
+    function openQuickViewModal(sanPhamId) {
+      $.ajax({
+        url: "/product/quick-view/" + sanPhamId,
+        type: "GET",
+        success: function (response) {
+          if ($("#exampleModalCenter").length) {
+            $("#exampleModalCenter").remove();
+          }
+          var newContent = $(response).find("#exampleModalCenter");
+          newContent.insertAfter(".footer");
+          var slickScript = document.createElement("script");
+          slickScript.src = "/assets/user/js/main.js";
+          document.head.appendChild(slickScript);
+          var imageCount = $("#exampleModalCenter img").length;
+          var loadedCount = 0;
+          function checkAllImagesLoaded() {
+            loadedCount++;
+            if (loadedCount === imageCount) {
+              $("#exampleModalCenter").modal("show");
+            }
+          }
+          $("#exampleModalCenter img")
+            .on("load", function () {
+              checkAllImagesLoaded();
+            })
+            .on("error", function () {
+              checkAllImagesLoaded();
+            });
+        },
+        error: function (xhr, status, error) {
+          console.log(error);
+        },
+      });
+    }
+    $(document).on("click", ".add-cart", function (event) {
+      event.preventDefault();
+      var colorId = $(this).data("color-id");
+      addToCart(colorId);
+    });
+
+    function addToCart(colorId, quantity) {
+      $.ajax({
+        url: "/cart/add",
+        method: "POST",
+        data: { colorId: colorId, quantity: quantity },
+        success: function (response) {
+          var cart = $(response).find(".header-middle-right");
+          $(".header-middle-right").replaceWith(cart);
+        },
+        error: function (xhr, status, error) {
+          console.error("Lỗi:", error);
+        },
+      });
+    }
+  </script>
+  <script src="/assets/user/js/vendor/popper.min.js"></script>
+
+  <script src="/assets/user/js/bootstrap.min.js"></script>
+
+  <script src="/assets/user/js/ajax-mail.js"></script>
+
+  <script src="/assets/user/js/jquery.meanmenu.min.js"></script>
+
+  <script src="/assets/user/js/wow.min.js"></script>
+
+  <script src="/assets/user/js/slick.min.js"></script>
+
+  <script src="/assets/user/js/owl.carousel.min.js"></script>
+
+  <script src="/assets/user/js/jquery.magnific-popup.min.js"></script>
+
+  <script src="/assets/user/js/isotope.pkgd.min.js"></script>
+
+  <script src="/assets/user/js/imagesloaded.pkgd.min.js"></script>
+
+  <script src="/assets/user/js/jquery.mixitup.min.js"></script>
+
+  <script src="/assets/user/js/jquery.countdown.min.js"></script>
+
+  <script src="/assets/user/js/jquery.counterup.min.js"></script>
+
+  <script src="/assets/user/js/waypoints.min.js"></script>
+
+  <script src="/assets/user/js/jquery.barrating.min.js"></script>
+
+  <script src="/assets/user/js/jquery-ui.min.js"></script>
+
+  <script src="/assets/user/js/venobox.min.js"></script>
+
+  <script src="/assets/user/js/jquery.nice-select.min.js"></script>
+
+  <script src="/assets/user/js/scrollUp.min.js"></script>
+
+  <script src="/assets/user/js/main.js"></script>
+</body>
+
+</html>

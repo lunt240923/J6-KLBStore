@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{/user/user}"
+>
+  <head>
+    <title>KLB Store</title>
+  </head>
+  <body>
+    <div layout:fragment="content">
+      <div class="breadcrumb-area">
+        <div class="container">
+          <div class="breadcrumb-content">
+            <ul>
+              <li><a href="/user/index">Trang chủ</a></li>
+              <li class="active">Sản phẩm</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-wraper pt-60 pb-60">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 order-1 order-lg-2">
+              <div class="single-banner shop-page-banner">
+                <a href="#">
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/fir-e2be5.appspot.com/o/user%2Fimages%2Fbg-banner%2F1.webp?alt=media&token=c66f9e40-a22e-48b7-965d-66007050051c&_gl=1*1ijoyqy*_ga*NjcxOTQzNTAzLjE2ODEzNjQ0NjI.*_ga_CW55HF8NVT*MTY4NjEyMzQwNS44LjEuMTY4NjEyMzQ3NS4wLjAuMA.."
+                    alt="Li's Static Banner"
+                  />
+                </a>
+              </div>
+
+              <div class="shop-top-bar mt-30">
+                <div class="shop-bar-inner">
+                  <div class="product-view-mode">
+                    <ul class="nav shop-item-filter-list" role="tablist">
+                      <li role="presentation">
+                        <a
+                          data-toggle="tab"
+                          role="tab"
+                          aria-controls="grid-view"
+                          href="#grid-view"
+                          ><i class="fa fa-th"></i
+                        ></a>
+                      </li>
+                      <li class="active" role="presentation">
+                        <a
+                          aria-selected="true"
+                          class="active show"
+                          data-toggle="tab"
+                          role="tab"
+                          aria-controls="list-view"
+                          href="#list-view"
+                          ><i class="fa fa-th-list"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="toolbar-amount" th:if="page.content != null">
+                    <span th:text="'Hiển thị từ ' + ${page.number + 1} + ' đến ' + ${page.totalPages} + ' trong tổng số ' + ${page.totalElements} + ' sản phẩm'"></span>
+                  </div>
+                </div>
+
+                <div class="product-select-box">
+                  <div class="product-short">
+                    <p>Sắp xếp theo:</p>
+                    <select class="nice-select" onchange="changeSortBy(this.value)">
+                      <option value="related" th:selected="${sortBy == 'related'}">Liên quan</option>
+                      <option value="nameAsc" th:selected="${sortBy == 'nameAsc'}">Tên (A - Z)</option>
+                      <option value="nameDesc" th:selected="${sortBy == 'nameDesc'}">Tên (Z - A)</option>
+                      <option value="priceAsc" th:selected="${sortBy == 'priceAsc'}">Giá (Thấp &gt; Cao)</option>
+                      <option value="priceDesc" th:selected="${sortBy == 'priceDesc'}">Giá (Cao &gt; Thấp)</option>
+                      <option value="ratingAsc" th:selected="${sortBy == 'ratingAsc'}">Đánh giá (Thấp &gt; Cao)</option>              
+                      <option value="ratingDesc" th:selected="${sortBy == 'ratingDesc'}">Đánh giá (Cao &gt; Thấp)</option>              
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="shop-products-wrapper">
+                <div class="tab-content">
+                  <div id="grid-view" class="tab-pane fade" role="tabpanel">
+                    <div class="product-area shop-product-area">
+                      <div class="row">
+                        <div
+                          class="col-lg-3 col-md-3 col-sm-6 mt-40"
+                          th:each="sp : ${sanPham}"
+                        >
+                          <div class="single-product-wrap">
+                            <div class="product-image">
+                              <a
+                                th:href="@{'/user/product-details?productId=' + ${sp.sanPhamId} + '&productName=' + ${sp.tenSanPham}}"
+                              >
+                                <img
+                                  th:src="${sp.sanPhamMauSacs[0].duongDanAnh}"
+                                  alt="Li's Product Image"
+                                />
+                              </a>
+                              <span class="sticker">New</span>
+                            </div>
+                            <div class="product_desc">
+                              <div class="product_desc_info">
+                                <div class="product-review">
+                                  <h5 class="manufacturer">
+                                    <a
+                                      href="/user/product-details"
+                                      th:text="${sp.danhMucSanPham.tenDanhMucSanPham} + ' Brand'"
+                                    ></a>
+                                  </h5>
+                                  <div class="rating-box">
+                                    <ul class="rating">
+                                      <th:block
+                                        th:with="totalStars=${#numbers.sequence(1, 5)}"
+                                      >
+                                        <th:block
+                                          th:with="totalRatings=${#lists.size(sp.sanPhamDanhGias)}"
+                                        >
+                                          <th:block th:with="totalStarsCount=0">
+                                            <th:block
+                                              th:each="danhGia : ${sp.sanPhamDanhGias}"
+                                            >
+                                              <th:block
+                                                th:with="totalStarsCount=${totalStarsCount + danhGia.sao}"
+                                              >
+                                              </th:block>
+                                            </th:block>
+                                          </th:block>
+                                          <th:block
+                                            th:with="averageRating=${totalRatings > 0 ? totalStarsCount / totalRatings : 0}"
+                                          >
+                                            <th:block
+                                              th:each="star : ${totalStars}"
+                                            >
+                                              <li
+                                                th:class="${averageRating >= star} ? 'filled-star' : 'no-star'"
+                                              >
+                                                <i class="fa fa-star"></i>
+                                              </li>
+                                            </th:block>
+                                          </th:block>
+                                        </th:block>
+                                      </th:block>
+                                    </ul>
+                                  </div>
+                                </div>
+                                <h4>
+                                  <a
+                                    class="product_name"
+                                    href="/user/product-details"
+                                    th:text="${sp.tenSanPham}"
+                                  ></a>
+                                </h4>
+                                <div class="price-box">
+                                  <span
+                                    class="new-price new-price-2"
+                                    th:if="${sp.sanPhamGiamGiaTrucTieps != null && !sp.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                                  >
+                                    <span
+                                      th:with="giamGia = ${sp.sanPhamGiamGiaTrucTieps[sp.sanPhamGiamGiaTrucTieps.size() - 1]}"
+                                    >
+                                      <span
+                                        th:if="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                                      >
+                                        <span
+                                          th:text="${#numbers.formatDecimal(sp.giaBan.subtract(sp.giaBan.multiply(giamGia.giamGiaTrucTiep.divide(BigDecimal.valueOf(100)))), 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                                        ></span>
+                                      </span>
+                                      <span
+                                        th:unless="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                                      >
+                                        <span
+                                          th:text="${#numbers.formatDecimal(sp.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                                        ></span>
+                                      </span>
+                                    </span>
+                                  </span>
+                                  <span
+                                    class="new-price"
+                                    th:unless="${sp.sanPhamGiamGiaTrucTieps != null && !sp.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                                  >
+                                    <span
+                                      th:text="${#numbers.formatDecimal(sp.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                                    ></span>
+                                  </span>
+                                  <span
+                                    class="old-price"
+                                    th:if="${sp.sanPhamGiamGiaTrucTieps != null && !sp.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                                  >
+                                    <span
+                                      th:with="giamGia = ${sp.sanPhamGiamGiaTrucTieps[sp.sanPhamGiamGiaTrucTieps.size() - 1]}"
+                                    >
+                                      <span
+                                        th:if="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                                      >
+                                        <span
+                                          th:text="${#numbers.formatDecimal(sp.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                                        ></span>
+                                      </span>
+                                    </span>
+                                  </span>
+                                  <span
+                                    class="discount-percentage"
+                                    th:if="${sp.sanPhamGiamGiaTrucTieps != null && !sp.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                                  >
+                                    <span
+                                      th:with="giamGia = ${sp.sanPhamGiamGiaTrucTieps[sp.sanPhamGiamGiaTrucTieps.size() - 1]}"
+                                    >
+                                      <span
+                                        th:if="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                                      >
+                                        <span
+                                          th:text="'-' + ${#numbers.formatDecimal(giamGia.giamGiaTrucTiep, 0, 'COMMA', 0, 'POINT')} + '%'"
+                                        ></span>
+                                      </span>
+                                    </span>
+                                  </span>
+                                </div>
+                              </div>
+                              <div class="add-actions">
+                                <ul class="add-actions-link">
+                                  <li class="add-cart active" th:data-color-id="${sp.sanPhamMauSacs[0].mauSacId}">
+                                    <a href="javascript:void(0)"
+                                      >Thêm vào giỏ</a
+                                    >
+                                  </li>
+                                  <li>
+                                    <a
+                                      href="javascript:void(0)"
+                                      title="Xem nhanh"
+                                      class="quick-view-btn"
+                                      th:onclick="'openQuickViewModal('+${sp.sanPhamId}+')'"
+                                    >
+                                      <i class="fa fa-eye"></i>
+                                    </a>
+                                  </li>
+                                  <li>
+                                    <a
+                                      class="links-details"
+                                      href="/user/wishlist"
+                                      ><i class="fa fa-heart-o"></i
+                                    ></a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    id="list-view"
+                    class="tab-pane fade product-list-view active show"
+                    role="tabpanel"
+                  >
+                    <div class="row">
+                      <div class="col">
+                        <div
+                          class="row product-layout-list"
+                          th:each="sp : ${sanPham}"
+                        >
+                          <div class="col-lg-3 col-md-5">
+                            <div class="product-image">
+                              <a
+                                th:href="@{'/user/product-details?productId=' + ${sp.sanPhamId} + '&productName=' + ${sp.tenSanPham}}"
+                              >
+                                <img
+                                  th:src="${sp.sanPhamMauSacs[0].duongDanAnh}"
+                                  alt="Li's Product Image"
+                                />
+                              </a>
+                              <span class="sticker">New</span>
+                            </div>
+                          </div>
+                          <div class="col-lg-5 col-md-7">
+                            <div class="product_desc">
+                              <div class="product_desc_info">
+                                <div class="product-review">
+                                  <h5 class="manufacturer">
+                                    <a
+                                      href="/user/product-details"
+                                      th:text="${sp.danhMucSanPham.tenDanhMucSanPham} + ' Brand'"
+                                    ></a>
+                                  </h5>
+                                  <div class="rating-box">
+                                    <ul class="rating">
+                                      <th:block
+                                        th:with="totalStars=${#numbers.sequence(1, 5)}"
+                                      >
+                                        <th:block
+                                          th:with="totalRatings=${#lists.size(sp.sanPhamDanhGias)}"
+                                        >
+                                          <th:block th:with="totalStarsCount=0">
+                                            <th:block
+                                              th:each="danhGia : ${sp.sanPhamDanhGias}"
+                                            >
+                                              <th:block
+                                                th:with="totalStarsCount=${totalStarsCount + danhGia.sao}"
+                                              >
+                                              </th:block>
+                                            </th:block>
+                                          </th:block>
+                                          <th:block
+                                            th:with="averageRating=${totalRatings > 0 ? totalStarsCount / totalRatings : 0}"
+                                          >
+                                            <th:block
+                                              th:each="star : ${totalStars}"
+                                            >
+                                              <li
+                                                th:class="${averageRating >= star} ? 'filled-star' : 'no-star'"
+                                              >
+                                                <i class="fa fa-star"></i>
+                                              </li>
+                                            </th:block>
+                                          </th:block>
+                                        </th:block>
+                                      </th:block>
+                                    </ul>
+                                  </div>
+                                </div>
+                                <h4>
+                                  <a
+                                    class="product_name"
+                                    href="/user/product-details"
+                                    th:text="${sp.tenSanPham}"
+                                  ></a>
+                                </h4>
+                                <div class="price-box">
+                                  <span
+                                    class="new-price new-price-2"
+                                    th:if="${sp.sanPhamGiamGiaTrucTieps != null && !sp.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                                  >
+                                    <span
+                                      th:with="giamGia = ${sp.sanPhamGiamGiaTrucTieps[sp.sanPhamGiamGiaTrucTieps.size() - 1]}"
+                                    >
+                                      <span
+                                        th:if="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                                      >
+                                        <span
+                                          th:text="${#numbers.formatDecimal(sp.giaBan.subtract(sp.giaBan.multiply(giamGia.giamGiaTrucTiep.divide(BigDecimal.valueOf(100)))), 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                                        ></span>
+                                      </span>
+                                      <span
+                                        th:unless="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                                      >
+                                        <span
+                                          th:text="${#numbers.formatDecimal(sp.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                                        ></span>
+                                      </span>
+                                    </span>
+                                  </span>
+                                  <span
+                                    class="new-price"
+                                    th:unless="${sp.sanPhamGiamGiaTrucTieps != null && !sp.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                                  >
+                                    <span
+                                      th:text="${#numbers.formatDecimal(sp.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                                    ></span>
+                                  </span>
+                                  <span
+                                    class="old-price"
+                                    th:if="${sp.sanPhamGiamGiaTrucTieps != null && !sp.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                                  >
+                                    <span
+                                      th:with="giamGia = ${sp.sanPhamGiamGiaTrucTieps[sp.sanPhamGiamGiaTrucTieps.size() - 1]}"
+                                    >
+                                      <span
+                                        th:if="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                                      >
+                                        <span
+                                          th:text="${#numbers.formatDecimal(sp.giaBan, 0, 'COMMA', 0, 'POINT')} + ' ₫'"
+                                        ></span>
+                                      </span>
+                                    </span>
+                                  </span>
+                                  <span
+                                    class="discount-percentage"
+                                    th:if="${sp.sanPhamGiamGiaTrucTieps != null && !sp.sanPhamGiamGiaTrucTieps.isEmpty()}"
+                                  >
+                                    <span
+                                      th:with="giamGia = ${sp.sanPhamGiamGiaTrucTieps[sp.sanPhamGiamGiaTrucTieps.size() - 1]}"
+                                    >
+                                      <span
+                                        th:if="${giamGia != null && giamGia.ngayBatDau != null && giamGia.ngayKetThuc != null && giamGia.ngayBatDau.isBefore(#dates.createNow()) && giamGia.ngayKetThuc.isAfter(#dates.createNow())}"
+                                      >
+                                        <span
+                                          th:text="'-' + ${#numbers.formatDecimal(giamGia.giamGiaTrucTiep, 0, 'COMMA', 0, 'POINT')} + '%'"
+                                        ></span>
+                                      </span>
+                                    </span>
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div class="shop-add-action mb-xs-30">
+                              <ul class="add-actions-link">
+                                <li class="add-cart" th:data-color-id="${sp.sanPhamMauSacs[0].mauSacId}">
+                                  <a href="#">Thêm vào giỏ</a>
+                                </li>
+                                <li class="wishlist">
+                                  <a href="/user/wishlist"
+                                    ><i class="fa fa-heart-o"></i>Thêm yêu
+                                    thích</a
+                                  >
+                                </li>
+                                <li>
+                                  <a
+                                    class="quick-view"
+                                    th:onclick="'openQuickViewModal('+${sp.sanPhamId}+')'"
+                                    href="javascript:void(0)"
+                                    ><i class="fa fa-eye"></i>Xem nhanh</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="paginatoin-area" th:if="!${#strings.isEmpty(nhomSanPhamId)}">
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6" >
+                        <p th:text="'Hiển thị ' + ${page.number + 1} + '-' + ${page.totalPages} + ' trong tổng số ' + ${page.totalElements} + ' sản phẩm'"></p>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <ul class="pagination-box">
+                          <li th:class="${!page.hasPrevious ? 'disabled' : ''}">
+                            <a th:href="@{/user/shop-list(p=${page.number != null ? page.number: null}, nhomSanPhamId=${nhomSanPhamId}, sortBy=${sortBy})}" th:if="${page.hasPrevious}" class="Previous">
+                              <i class="fa fa-chevron-left"></i> Trước
+                            </a>
+                          </li>
+                          <li th:each="pageNumber : ${#numbers.sequence(1, page.totalPages)}" th:class="${pageNumber == page.number + 1 ? 'active' : ''}">
+                            <a th:href="@{/user/shop-list(p=${pageNumber}, nhomSanPhamId=${nhomSanPhamId}, sortBy=${sortBy})}" th:text="${pageNumber}"></a>
+                          </li>
+                          <li th:class="${!page.hasNext ? 'disabled' : ''}">
+                            <a th:href="@{/user/shop-list(p=${page.number != null ? page.number + 2 : null}, nhomSanPhamId=${nhomSanPhamId}, sortBy=${sortBy})}" th:if="${page.hasNext}" class="Next">
+                              Tiếp <i class="fa fa-chevron-right"></i>
+                            </a>
+                          </li>                          
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="paginatoin-area" th:if="!${#strings.isEmpty(keywords)}">
+                    <div class="row">
+                      <div class="col-lg-6 col-md-6" >
+                        <p th:text="'Hiển thị ' + ${page.number + 1} + '-' + ${page.totalPages} + ' trong tổng số ' + ${page.totalElements} + ' sản phẩm'"></p>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <ul class="pagination-box">
+                          <li th:class="${!page.hasPrevious ? 'disabled' : ''}">
+                            <a th:href="@{/user/search(p=${page.number != null ? page.number: null}, keywords=${keywords}, sortBy=${sortBy})}" th:if="${page.hasPrevious}" class="Previous">
+                              <i class="fa fa-chevron-left"></i> Trước
+                            </a>
+                          </li>
+                          <li th:each="pageNumber : ${#numbers.sequence(1, page.totalPages)}" th:class="${pageNumber == page.number + 1 ? 'active' : ''}">
+                            <a th:href="@{/user/search(p=${pageNumber}, keywords=${keywords}, sortBy=${sortBy})}" th:text="${pageNumber}"></a>
+                          </li>
+                          <li th:class="${!page.hasNext ? 'disabled' : ''}">
+                            <a th:href="@{/user/search(p=${page.number != null ? page.number + 2 : null}, keywords=${keywords}, sortBy=${sortBy})}" th:if="${page.hasNext}" class="Next">
+                              Tiếp <i class="fa fa-chevron-right"></i>
+                            </a>
+                          </li>                          
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
