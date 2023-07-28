@@ -1,4 +1,4 @@
-package com.klbstore.controller;
+package com.klbstore.restcontroller;
 
 import java.util.List;
 

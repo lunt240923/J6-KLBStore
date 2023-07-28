@@ -1,4 +1,4 @@
-package com.klbstore.controller;
+package com.klbstore.restcontroller;
 
 import java.util.List;
 
@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klbstore.dao.CauHinhDienThoaiDAO;
 import com.klbstore.dao.SanPhamDAO;
-import com.klbstore.model.CauHinhDienThoai;
 import com.klbstore.model.SanPham;
 
 @CrossOrigin("*")
