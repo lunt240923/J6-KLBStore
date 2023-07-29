@@ -42,7 +42,7 @@ public class NhaCungCapRestController {
     //     return nhaCungCapDAO.getAllNhaCungCap();
     // }
 
-    @GetMapping("/rest/nhacungcap/{nhaCungCapId}" )
+    @GetMapping("/rest/nhacungcap/edit/{nhaCungCapId}" )
     public NhaCungCap getOne(@PathVariable("nhaCungCapId") Integer nhaCungCapId) {
         return nhaCungCapDAO.findById(nhaCungCapId).get();
     }

@@ -30,8 +30,6 @@ public class NhaCungCapController {
     //QL
     @GetMapping("admin/nhacungcap/edit")
     public String QLNhaCungCap(Model model) {
-        NhaCungCap nhaCungCap = new NhaCungCap();
-        model.addAttribute("nhaCungCap", nhaCungCap);
         return "admin/QLNhaCungCap";
     }
     //QL btn chỉnh sửa

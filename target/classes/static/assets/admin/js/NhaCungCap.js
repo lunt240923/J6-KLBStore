@@ -31,6 +31,17 @@ app.controller("ctrl", function ($scope, $http) {
             console.log("Error",err)
         });
     }
+
+    $scope.edit = function (id) {
+        var url = `${host}/nhacungcap/edit/${id}`;
+        $http.get(url).then((resp) => {
+            $scope.form = resp.data;
+            
+            console.log("Success",resp)
+        }).catch((err) => {
+            console.log("Error",err)
+        });
+    }
     // load toàn bộ sv từ DB
     $scope.getAll();
 })
