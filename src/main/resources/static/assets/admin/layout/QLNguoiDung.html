@@ -1,0 +1,125 @@
+<div class="min-height-200px">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="title">
+                    <h4>Quản Lý Người Dùng</h4>
+                </div>
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">Trang Chủ</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Quản Lý Người Dùng
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Default Basic Forms Start -->
+    <div class="pd-20 card-box mb-30">
+        <div class="clearfix">
+            <div class="pull-left">
+                <h4 class="text-blue h4">Quản Lý Người Dùng</h4>
+                <!-- <p class="mb-30">All bootstrap element classies</p> -->
+            </div>
+
+        </div>
+        <form action="#"  th:object="${items}">
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Mã Người Dùng</label>
+                <div class="col-sm-12 col-md-10">
+                    <input required name="id" th:field="*{nguoidungid}" class="form-control" type="text" placeholder="0001" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Tên Đăng Nhập</label>
+                <div class="col-sm-12 col-md-10">
+                    <input required th:field="*{tendangnhap}" class="form-control" type="text" placeholder="VD: annv0001" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Mật Khẩu</label>
+                <div class="col-sm-12 col-md-10">
+                    <input required th:field="*{matkhau}" class="form-control" type="text" placeholder="*******" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Họ Và Tên</label>
+                <div class="col-sm-12 col-md-10">
+                    <input required th:field="*{hoten}" class="form-control" type="text" placeholder="VD: Nguyễn Văn An" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Email</label>
+                <div class="col-sm-12 col-md-10">
+                    <input required th:field="*{email}" class="form-control" placeholder="VD: annv@gmail.com" type="email" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Số Điện Thoại</label>
+                <div class="col-sm-12 col-md-10">
+                    <input required th:field="*{sdt}" class="form-control" placeholder="XX-XXXX-XXXX" type="tel" />
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
+                    Sinh</label>
+                <div class="col-sm-12 col-md-10">
+                    <input required th:field="*{namsinh}" class="form-control" placeholder="dd-MM-yyyy"
+                        type="date" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Giới Tính</label>
+                <div class="col-sm-12 col-md-10">
+                    <select th:field="*{gioitinh}" name="gioitinh" class="custom-select col-12">
+                        
+                        <option th:each="gioitinh : ${genders}" th:value="${gioitinh.key}" th:text="${gioitinh.value}"></option>
+                        
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Địa Chỉ</label>
+                <div class="col-sm-12 col-md-10">
+                    <textarea th:field="*{diachi}" class="form-control" placeholder="Xã, Phường, Quận, Huyện, Tỉnh"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
+                    Đăng Ký</label>
+                <div class="col-sm-12 col-md-10">
+                    <input required th:field="*{ngaydangky}" class="form-control" placeholder="dd-MM-yyyy"
+                        type="date" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Quyền</label>
+                <div class="col-sm-12 col-md-10">
+                    <select th:field="*{quyendangnhap}" name="quyendangnhap" class="custom-select col-12">
+                        <option th:each="ad : ${admin}" th:value="${ad.key}" th:text="${ad.value}">Admin</option>
+        
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col align-self-end">
+                    <!-- <button formaction="/" class="btn btn-outline-danger">Xóa</button> -->
+                    <button formaction="/admin/nguoidung/update" class="btn btn-outline-warning js-btn-update">Cập Nhật</button>
+                    <button formaction="/admin/nguoidung/create" class="btn btn-outline-success">Thêm</button>
+                
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <!-- Default Basic Forms End -->
+</div>

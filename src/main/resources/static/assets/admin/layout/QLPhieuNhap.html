@@ -1,0 +1,508 @@
+<div class="min-height-200px">
+	<div class="page-header">
+		<div class="row">
+			<div class="col-md-6 col-sm-12">
+				<div class="title">
+					<h4>Quản lý phiếu nhập xuất</h4>
+				</div>
+				<nav aria-label="breadcrumb" role="navigation">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="index3.html">Trang Chủ</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">
+							Quản lý phiếu nhập xuất
+						</li>
+					</ol>
+				</nav>
+			</div>
+			<!-- <div class="col-md-6 col-sm-12 text-right">
+				<div class="dropdown">
+					<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+						data-toggle="dropdown">
+						January 2018
+					</a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a class="dropdown-item" href="#">Export List</a>
+						<a class="dropdown-item" href="#">Policies</a>
+						<a class="dropdown-item" href="#">View Assets</a>
+					</div>
+				</div>
+			</div> -->
+		</div>
+	</div>
+	<!-- Default Basic Forms Start -->
+	<div class="pd-20 card-box mb-30">
+		<div class="clearfix">
+			<div class="pull-left">
+				<h4 class="text-blue h4">Quản lý phiếu nhập</h4>
+				<!-- <p class="mb-30">All bootstrap element classies</p> -->
+			</div>
+
+		</div>
+		<form>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">ID</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" type="text" placeholder="SP0001" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Tên Sản Phẩm</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" type="text" placeholder="Laptop Asus" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Giá Bán</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" type="text" placeholder="17.990.000đ" />
+				</div>
+			</div>
+			
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Số Lượng</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" value="1" type="number" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Mã Giảm Giá</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" placeholder="GG0001" type="text" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày Đặt Hàng</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control datetimepicker" placeholder="dd-MM-yyyy"
+						type="text" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Mã Người Dùng</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" placeholder="ND0001" type="text" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Tên Người Dùng</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" placeholder="Nguyễn Lũ" type="text" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Số Điện Thoại</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" placeholder="09-0990-0899" type="text" />
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-12 col-md-2 col-form-label">Địa Chỉ</label>
+				<div class="col-sm-12 col-md-10">
+					<input class="form-control" placeholder="Hậu Giang" type="text" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col align-self-end">
+						<button class="btn btn-outline-danger">Xóa</button>
+						<button class="btn btn-outline-warning">Cập Nhập</button>
+						<button class="btn btn-outline-success">Thêm</button>
+						
+				</div>
+				<div class="col">
+					<label class="col-sm-12 col-md-3 col-form-label">Tổng Tiền:</label>
+					<label style="font-weight: bold;" class="col-sm-12 offset-md-3 col-md-5 col-form-label">10.000.000đ</label>
+				</div>
+			</div>
+		</form>
+		
+	</div>
+	<!-- Default Basic Forms End -->
+	<!-- Simple Datatable start -->
+	<div class="card-box mb-30">
+		<div class="pd-20">
+			<h4 class="text-blue h4">Danh sách phiếu nhập xuất</h4>
+			<p class="mb-0">
+				you can find more options
+				<a
+					class="text-primary"
+					href="https://datatables.net/"
+					target="_blank"
+					>Click Here</a
+				>
+			</p>
+		</div>
+		<div class="pb-20">
+			<table class="data-table table stripe hover nowrap">
+				<thead>
+					<tr>
+						<th class="table-plus">STT</th>
+						<th>Số phiếu</th>
+						<th>Office</th>
+						<th>Address</th>
+						<th>Start Date</th>
+						<th class="datatable-nosort">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="table-plus">Gloria F. Mead</td>
+						<td>25</td>
+						<td>Sagittarius</td>
+						<td>2829 Trainer Avenue Peoria, IL 61602</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-plus">ndrea J. Cagle</td>
+						<td>30</td>
+						<td>Gemini</td>
+						<td>1280 Prospect Valley Road Long Beach, CA 90802</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-plus">drea J. Cagle</td>
+						<td>20</td>
+						<td>Gemini</td>
+						<td>2829 Trainer Avenue Peoria, IL 61602</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-plus">ea J. Cagle</td>
+						<td>30</td>
+						<td>Sagittarius</td>
+						<td>1280 Prospect Valley Road Long Beach, CA 90802</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-plus">Andrea J. Cagle</td>
+						<td>25</td>
+						<td>Gemini</td>
+						<td>2829 Trainer Avenue Peoria, IL 61602</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-plus">Andrea J. Cagle</td>
+						<td>20</td>
+						<td>Sagittarius</td>
+						<td>1280 Prospect Valley Road Long Beach, CA 90802</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-plus">Andrea J. Cagle</td>
+						<td>18</td>
+						<td>Gemini</td>
+						<td>1280 Prospect Valley Road Long Beach, CA 90802</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="table-plus">Andrea J. Cagle</td>
+						<td>30</td>
+						<td>Sagittarius</td>
+						<td>1280 Prospect Valley Road Long Beach, CA 90802</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-plus">Andrea J. Cagle</td>
+						<td>30</td>
+						<td>Gemini</td>
+						<td>1280 Prospect Valley Road Long Beach, CA 90802</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-plus">Andrea J. Cagle</td>
+						<td>30</td>
+						<td>Gemini</td>
+						<td>1280 Prospect Valley Road Long Beach, CA 90802</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-plus">Andrea J. Cagle</td>
+						<td>30</td>
+						<td>Gemini</td>
+						<td>1280 Prospect Valley Road Long Beach, CA 90802</td>
+						<td>29-03-2018</td>
+						<td>
+							<div class="dropdown">
+								<a
+									class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									href="#"
+									role="button"
+									data-toggle="dropdown"
+								>
+									<i class="dw dw-more"></i>
+								</a>
+								<div
+									class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+								>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-eye"></i> View</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-edit2"></i> Edit</a
+									>
+									<a class="dropdown-item" href="#"
+										><i class="dw dw-delete-3"></i> Delete</a
+									>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- Simple Datatable End -->
+	
+</div>

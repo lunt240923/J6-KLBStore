@@ -142,14 +142,10 @@ public class AdminController {
     //============================Trang Chủ=================================================
     
     //Thống Kê
-    @GetMapping("admin/index")
+    @GetMapping({"/admin", "/admin/index"})
     public String Home(Model model) {
-        List<ThongKeTonKhoDanhMuc> tkTonKho = danhMucSanPhamDAO.thongKeTonKhoDanhMuc();
-        // model.addAttribute("hoTen")
-        // List<ThongKeDoanhThu> thDoanhThu = donHangDAO.getDoanhThu();
-        model.addAttribute("fruits", tkTonKho);
-        // model.addAttribute("doanhthu", thDoanhThu);
-        return "admin/index";
+        
+        return "redirect:/assets/admin/index.html";
     }
     //============================CHỨC NĂNG Đăng Nhập=================================================
     

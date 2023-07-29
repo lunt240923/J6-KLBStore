@@ -4,7 +4,6 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8" />
-	
 	<title>KLB Store</title>
 
 	<!-- Site favicon -->
@@ -29,33 +28,13 @@
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GBZ3SGGX85"></script>
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258"
 		crossorigin="anonymous"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag("js", new Date());
-
-		gtag("config", "G-GBZ3SGGX85");
-	</script>
-	<!-- Google Tag Manager -->
-	<script>
-		(function (w, d, s, l, i) {
-			w[l] = w[l] || [];
-			w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-			var f = d.getElementsByTagName(s)[0],
-				j = d.createElement(s),
-				dl = l != "dataLayer" ? "&l=" + l : "";
-			j.async = true;
-			j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-			f.parentNode.insertBefore(j, f);
-		})(window, document, "script", "dataLayer", "GTM-NXZMQSS");
-	</script>
-	<!-- End Google Tag Manager -->
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 </head>
 
-<body>
-	<div class="pre-loader">
+<body ng-app="admin-app">
+	<!-- <div class="pre-loader">
 		<div class="pre-loader-box">
 			<div class="loader-logo">
 				<img src="/assets/admin/vendors/images/klb-logo.svg" alt="" />
@@ -66,7 +45,8 @@
 			<div class="percent" id="percent1">0%</div>
 			<div class="loading-text">Loading...</div>
 		</div>
-	</div>
+	</div> -->
+
 	<div class="header">
 		<div class="header-left">
 			<div class="menu-icon bi bi-list"></div>
@@ -238,13 +218,13 @@
 					<div
 						class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
 					>
-						<a class="dropdown-item" href="profile.html"
+						<a class="dropdown-item" href="/admin/profile"
 							><i class="dw dw-user1"></i> Hồ sơ</a
 						>
-						<a class="dropdown-item" href="faq.html"
+						<a class="dropdown-item" href="/admin/faq"
 							><i class="dw dw-help"></i> Trợ giúp</a
 						>
-						<a class="dropdown-item" href="login.html"
+						<a class="dropdown-item" href="/admin/login"
 							><i class="dw dw-logout"></i> Đăng xuất</a
 						>
 					</div>
@@ -430,9 +410,13 @@
 
 	<div class="left-side-bar">
 		<div class="brand-logo">
-			<a href="index3.html">
+			<a href="/admin/index">
 				<img src="/assets/admin/vendors/images/klb-logo.svg" alt="" class="dark-logo" />
-				<img src="/assets/admin/vendors/images/klb-logo-white.svg" alt="" class="light-logo" />
+				<img
+					src="/assets/admin/vendors/images/klb-logo-white.svg"
+					alt=""
+					class="light-logo"
+				/>
 			</a>
 			<div class="close-sidebar" data-toggle="left-sidebar-close">
 				<i class="ion-close-round"></i>
@@ -442,176 +426,75 @@
 			<div class="sidebar-menu">
 				<ul id="accordion-menu">
 					<li>
-                        <a href="/admin/index" class="dropdown-toggle no-arrow">
-                            <span class="micon bi bi-house"></span
-                            ><span class="mtext">Trang chủ</span>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon bi bi-back"></span
-                            ><span class="mtext">Khác</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="/admin/faq">FAQ</a></li>
-                            <li><a href="/profile">Hồ sơ</a></li>
-                        </ul>
-                    </li>
+						<a href="/admin/index" class="dropdown-toggle no-arrow">
+							<span class="micon bi bi-house"></span
+							><span class="mtext">Trang chủ</span>
+						</a>
+					</li>
 					<li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon bi bi-textarea-resize"></span><span class="mtext">Quản Lý</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="/admin/sanpham/edit">Sản Phẩm</a></li>
-                            <li><a href="/admin/nguoidung/edit">Tài Khoản</a></li>
-                            <li><a href="/admin/donhang/edit">Đơn Hàng</a></li>
-                            <li><a href="/admin/danhmuc/edit">Danh Mục</a></li>
-                            <li><a href="/admin/magiamgia/edit">Mã Giảm Giá</a></li>
-                            <li><a href="/admin/nhacungcap/edit">Nhà Cung Cấp</a></li>
-                            <li><a href="/admin/phieunhap">Phiếu Nhập</a></li>
-                            <li><a href="/admin/phieuxuat">Phiếu Xuất</a></li>
-                            <li><a href="/admin/danhgia/edit">Đánh Giá</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="javascript:;" class="dropdown-toggle">
-                            <span class="micon bi bi-table"></span><span class="mtext">Danh Sách</span>
-                        </a>
-                        <ul class="submenu">
-                            <li><a href="/admin/sanpham">Sản Phẩm</a></li>
-                            <li><a href="/admin/nguoidung">Tài Khoản</a>
-                            <li><a href="/admin/donhang">Đơn Hàng</a></li>
-                            <li><a href="/admin/danhmuc">Danh Mục</a></li>
-                            <li><a href="/admin/magiamgia">Mã Giảm Giá</a></li>
-                            <li><a href="/admin/nhacungcap">Nhà Cung Cấp</a></li>
-                        </ul>
-                    </li>
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon bi bi-back"></span
+							><span class="mtext">Khác</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/admin/faq">FAQ</a></li>
+							<li><a href="/admin/profile">Hồ sơ</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon bi bi-textarea-resize"></span><span class="mtext">Quản Lý</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="#!sanpham">Sản Phẩm</a></li>
+							<li><a href="#!nguoidung">Tài Khoản</a></li>
+							<li><a href="#!donhang">Đơn Hàng</a></li>
+							<li><a href="#!danhmuc">Danh Mục</a></li>
+							<li><a href="#!magiamgia">Mã Giảm Giá</a></li>
+							<li><a href="#!nhacungcap">Nhà Cung Cấp</a></li>
+							<li><a href="#!phieunhap">Phiếu Nhập</a></li>
+							<li><a href="#!danhgia">Đánh Giá</a></li>
+						</ul>
+					</li>
+					
 				</ul>
 			</div>
 		</div>
 	</div>
 	<div class="mobile-menu-overlay"></div>
 
+
 	<div class="main-container">
-		<div class="pd-ltr-20 xs-pd-20-10">
-			<div class="min-height-200px">
-				<div class="page-header">
-					<div class="row">
-						<div class="col-md-6 col-sm-12">
-							<div class="title">
-								<h4>Quản Lý Mã Giảm Giá</h4>
-							</div>
-							<nav aria-label="breadcrumb" role="navigation">
-								<ol class="breadcrumb">
-									<li class="breadcrumb-item">
-										<a href="index.html">Trang Chủ</a>
-									</li>
-									<li class="breadcrumb-item active" aria-current="page">
-										Quản Lý Mã Giảm Giá
-									</li>
-								</ol>
-							</nav>
-						</div>
-						<div class="col-md-6 col-sm-12 text-right">
-							<!-- <div class="dropdown">
-								<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-									data-toggle="dropdown">
-									January 2018
-								</a>
-								<div class="dropdown-menu dropdown-menu-right">
-									<a class="dropdown-item" href="#">Export List</a>
-									<a class="dropdown-item" href="#">Policies</a>
-									<a class="dropdown-item" href="#">View Assets</a>
-								</div>
-							</div> -->
-						</div>
-					</div>
-				</div>
-				<!-- Default Basic Forms Start -->
-				<div class="pd-20 card-box mb-30">
-					<div class="clearfix">
-						<div class="pull-left">
-							<h4 class="text-blue h4">Quản Lý Mã Giảm Giá</h4>
-							<!-- <p class="mb-30">All bootstrap element classies</p> -->
-						</div>
+		<div class="pd-ltr-20">
+			
+			
+			<ng-view></ng-view>
 
-					</div>
-					<form>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Mã Giảm Giá</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="GG0001" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Tên Giảm Giá</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="Các Sản Phẩm Laptop Asus" />
-							</div>
-						</div>
-
-						<div class="form-group row">
-							<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
-								Bắt Đầu</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control datetimepicker" placeholder="dd-MM-yyyy"
-									type="text" />
-							</div>
-						</div>
-                        <div class="form-group row">
-							<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
-								Kết Thúc</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control datetimepicker" placeholder="dd-MM-yyyy"
-									type="text" />
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Mức Giảm Giá</label>
-							<div class="col-sm-12 col-md-10">
-								<select class="custom-select col-12">
-									<option selected="">...</option>
-									<option value="1">500.000đ</option>
-									<option value="2">700.000đ</option>
-									<option value="3">1.000.000đ</option>
-								</select>
-							</div>
-						</div>
-						
-						<div class="form-group row">
-							<label class="col-sm-12 col-md-2 col-form-label">Mô Tả</label>
-							<div class="col-sm-12 col-md-10">
-								<input class="form-control" type="text" placeholder="Áp dụng cho sản phẩm laptop Asus" />
-							</div>
-						</div>
-						<div class="row">
-							<div class="col align-self-end">
-								<button class="btn btn-outline-danger">Xóa</button>
-								<button class="btn btn-outline-warning">Cập Nhập</button>
-								<button class="btn btn-outline-success">Thêm</button>
-
-							</div>
-						</div>
-					</form>
-
-				</div>
-
-				<!-- Default Basic Forms End -->
-
-
-				<div class="footer-wrap pd-20 mb-20 card-box">
-					Web Design by
-					<a href="#" target="_blank">KLB</a>
-				</div>
+			<div class="footer-wrap pd-20 mb-20 card-box">
+				KLB - Công ty trách nhiệm hữu hạng 3 thành viên
+				<a href="https://github.com/chibao2k3" target="_blank">ChiBao2k3</a>
 			</div>
 		</div>
+	</div>
 
-		<!-- js -->
-		<script src="/assets/admin/vendors/scripts/core.js"></script>
-		<script src="/assets/admin/vendors/scripts/script.min.js"></script>
-		<script src="/assets/admin/vendors/scripts/process.js"></script>
-		<script src="/assets/admin/vendors/scripts/layout-settings.js"></script>
+	<!-- js -->
+	<script src="/assets/admin/vendors/scripts/core.js"></script>
+	<script src="/assets/admin/vendors/scripts/script.min.js"></script>
+	<script src="/assets/admin/vendors/scripts/process.js"></script>
+	<script src="/assets/admin/vendors/scripts/layout-settings.js"></script>
+	<script src="/assets/admin/src/plugins/apexcharts/apexcharts.min.js"></script>
+	<script src="/assets/admin/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="/assets/admin/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+	<script src="/assets/admin/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+	<script src="/assets/admin/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+	<script src="/assets/admin/vendors/scripts/dashboard.js"></script>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS" height="0" width="0"
+			style="display: none; visibility: hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
 
+	<script src="/assets/admin/admin-layout.js"></script>
+	<script src="/assets/admin/js-ctrl/nhacungcap-ctrl.js"></script>
 </body>
 
 </html>
