@@ -12,39 +12,39 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klbstore.dao.GiamGiaDAO;
 import com.klbstore.model.GiamGia;
+import com.klbstore.service.MaGiamGiaService;
 
 @CrossOrigin("*")
 @RestController
 public class MaGiamGiaRestController {
     @Autowired
-    GiamGiaDAO giamGiaDAO;
+    MaGiamGiaService maGiamGiaService;
 
     @GetMapping("/rest/giamgia")
     public List<GiamGia> getAll() {
-        return giamGiaDAO.findAll();
+        return maGiamGiaService.getAll();
     }
 
     @GetMapping("/rest/giamgia/{giamgiaId}")
     public GiamGia getOne(@PathVariable("giamgiaId") Integer giamgiaId) {
-        return giamGiaDAO.findById(giamgiaId).get();
+        return maGiamGiaService.getById(giamgiaId);
     }
 
     @PostMapping("/rest/giamgia")
     public GiamGia post(@RequestBody GiamGia giamgia) {
-        giamGiaDAO.save(giamgia);
+        maGiamGiaService.create(giamgia);
         return giamgia;
     }
 
     @PutMapping("/rest/giamgia/{giamgiaId}")
     public GiamGia put(@RequestBody GiamGia giamgia, @PathVariable("giamgiaId") Integer giamgiaId) {
-        giamGiaDAO.save(giamgia);
+        maGiamGiaService.update(giamgia);
         return giamgia;
     }
 
     @DeleteMapping("/rest/giamgia/{giamgiaId}")
     public void delete(@PathVariable("giamgiaId") Integer giamgiaId) {
-        giamGiaDAO.deleteById(giamgiaId);
+        maGiamGiaService.delete(giamgiaId);
     }
 }

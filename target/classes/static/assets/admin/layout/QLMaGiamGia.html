@@ -38,65 +38,144 @@
 				<h4 class="text-blue h4">Quản Lý Mã Giảm Giá</h4>
 				<!-- <p class="mb-30">All bootstrap element classies</p> -->
 			</div>
-
 		</div>
-		<form>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Mã Giảm Giá</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control" type="text" placeholder="GG0001" />
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Tên Giảm Giá</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control" type="text" placeholder="Các Sản Phẩm Laptop Asus" />
-				</div>
-			</div>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<button class="btn btn-outline-primary " data-toggle="tab" data-target="#list">Chỉnh Sửa</button>
+			</li>
+			<li class="nav-item">
+				<button class=" btn btn-outline-primary active" data-toggle="tab" data-target="#table">Danh
+					Sách</button>
+			</li>
+		</ul>
 
-			<div class="form-group row">
-				<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
-					Bắt Đầu</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control datetimepicker" placeholder="dd-MM-yyyy"
-						type="text" />
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
-					Kết Thúc</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control datetimepicker" placeholder="dd-MM-yyyy"
-						type="text" />
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Mức Giảm Giá</label>
-				<div class="col-sm-12 col-md-10">
-					<select class="custom-select col-12">
-						<option selected="">...</option>
-						<option value="1">500.000đ</option>
-						<option value="2">700.000đ</option>
-						<option value="3">1.000.000đ</option>
-					</select>
-				</div>
-			</div>
-			
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Mô Tả</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control" type="text" placeholder="Áp dụng cho sản phẩm laptop Asus" />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col align-self-end">
-					<button class="btn btn-outline-danger">Xóa</button>
-					<button class="btn btn-outline-warning">Cập Nhập</button>
-					<button class="btn btn-outline-success">Thêm</button>
+		<!-- Tab panes -->
+		<div class="tab-content" style="padding-top: 18px;">
+			<div class="tab-pane  container" id="list">
+				<form>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Mã Giảm Giá</label>
+						<div class="col-sm-12 col-md-10">
+							<input ng-model="form.giamGiaId" class="form-control" type="text" readonly />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Tên Giảm Giá</label>
+						<div class="col-sm-12 col-md-10">
+							<input ng-model="form.tenGiamGia" class="form-control" type="text" required/>
+						</div>
+					</div>
 
+					<div class="form-group row">
+						<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
+							Bắt Đầu</label>
+						<div class="col-sm-12 col-md-10">
+							<input ng-model="form.ngayBatDau" class="form-control datetimepicker"
+								placeholder="dd-MM-yyyy" type="date" required/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
+							Kết Thúc</label>
+						<div class="col-sm-12 col-md-10">
+							<input ng-model="form.ngayKetThuc" class="form-control datetimepicker" type="date" required/>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Mức Giảm Giá</label>
+						<div class="col-sm-12 col-md-10">
+							<input ng-model="form.mucGiamGia" class="form-control" pattern="[0123456789]" type="tel" required/>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Mô Tả</label>
+						<div class="col-sm-12 col-md-10">
+							<input ng-model="form.moTa" class="form-control" type="text" required/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col align-self-end">
+							<button ng-click="create()" class="btn btn-outline-success">Thêm</button>
+							<button ng-click="update()" class="btn btn-outline-warning">Cập Nhập</button>
+
+							<button ng-click="reset()" class="btn btn-outline-primary">Reset</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="tab-pane active container" id="table">
+				<table class="data-table table stripe hover nowrap">
+					<thead>
+						<tr>
+							<th class="table-plus datatable-nosort">Mã Giảm Giá</th>
+							<th>Tên Giảm Giá</th>
+							<th>Ngày Bắt Đầu</th>
+							<th>Ngày Kết Thúc</th>
+							<th>Mức Giảm Giá</th>
+							<th>Mô Tả</th>
+							<th class="datatable-nosort">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in pager.items">
+							<td class="table-plus">{{item.giamGiaId}}</td>
+							<td>{{item.tenGiamGia}}</td>
+							<td>{{item.ngayBatDau | date: "dd-MM-yyyy"}}</td>
+							<td>{{item.ngayKetThuc | date: "dd-MM-yyyy"}}</td>
+							<td>{{item.mucGiamGia}}</td>
+							<td>{{item.moTa}}</td>
+							<td>
+								<div class="dropdown">
+									<button class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+										role="button" data-toggle="dropdown">
+										<i class="dw dw-more"></i>
+									</button>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+										<button ng-click="edit(item.giamGiaId)" class="dropdown-item"><i
+												class="dw dw-edit2"></i> Chỉnh
+											Sửa</button>
+										<button ng-click="delete(item.giamGiaId)" class="dropdown-item"><i
+												class="dw dw-delete-3"></i>
+											Xóa</button>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+
+					</tbody>
+				</table>
+				<hr style="border: 1px solid lightgray;" />
+				<div class="row">
+					<div class="col-sm-4" style="font-size: medium;">Trang: {{pager.page +1}} / {{pager.count}}</div>
+					<div class="col-sm-8">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination justify-content-end">
+								<li class="page-item">
+									<button ng-click="pager.first()" class="page-link" tabindex="-1"><i
+											class="dw dw-left-arrow2"></i></button>
+								</li>
+								<li class="page-item">
+									<button ng-click="pager.previous()" class="page-link"><i
+											class="dw dw-left-arrow-4"></i></button>
+								</li>
+								<li class="page-item">
+									<button ng-click="pager.next()" class="page-link"><i
+											class="dw dw-right-arrow-4"></i></button>
+								</li>
+								<li class="page-item">
+									<button ng-click="pager.last()" class="page-link"><i
+											class="dw dw-right-arrow1"></i></button>
+								</li>
+							</ul>
+						</nav>
+					</div>
 				</div>
 			</div>
-		</form>
+		</div>
+
 
 	</div>
 

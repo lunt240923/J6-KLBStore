@@ -29,7 +29,6 @@ app.controller("nguoidung-ctrl", function ($scope, $http, $location) {
 
     // load toàn bộ sv từ DB
     $scope.initialize();
-    $scope.items.matKhau = '\u2602';
 
     $scope.edit = function (id) {
         var url = `${host}/nguoidung/${id}`;

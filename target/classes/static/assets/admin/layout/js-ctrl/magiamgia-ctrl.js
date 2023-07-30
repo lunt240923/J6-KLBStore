@@ -1,25 +1,21 @@
 // let host = "http://localhost:8080/rest";
 
-app.controller("nguoidung-ctrl", function ($scope, $http, $location) {
+app.controller("magiamgia-ctrl", function ($scope, $http, $location) {
 
     $scope.form = {};
     $scope.items = [];
 
     $scope.reset = function () {
-        $scope.form = {
-            ngayDangKy: new Date(),
-            quyenDangNhap: false,
-            gioiTinh: true
-        };
+        $scope.form = null;
     }
 
     $scope.initialize = function () {
-        var url = `${host}/nguoidung`;
+        var url = `${host}/giamgia`;
         $http.get(url).then((result) => {
             $scope.items = result.data;
             $scope.items.forEach(item => {
-                item.ngaySinh = new Date(item.ngaySinh);
-                item.ngayDangKy = new Date(item.ngayDangKy);
+                item.ngayBatDau = new Date(item.ngayBatDau);
+                item.ngayKetThuc = new Date(item.ngayKetThuc);
             })
             console.log("Success", result);
         }).catch((err) => {
@@ -29,13 +25,14 @@ app.controller("nguoidung-ctrl", function ($scope, $http, $location) {
 
     // load toàn bộ sv từ DB
     $scope.initialize();
+    
 
     $scope.edit = function (id) {
-        var url = `${host}/nguoidung/${id}`;
+        var url = `${host}/giamgia/${id}`;
         $http.get(url).then((resp) => {
             $scope.form = resp.data;
-            $scope.form.ngaySinh = new Date($scope.form.ngaySinh);
-            $scope.form.ngayDangKy = new Date($scope.form.ngayDangKy);
+            $scope.form.ngayBatDau = new Date($scope.form.ngayBatDau);
+            $scope.form.ngayKetThuc = new Date($scope.form.ngayKetThuc);
             $(".nav-tabs button:eq(0)").tab("show");
             console.log("Success", resp)
         }).catch((err) => {
@@ -46,25 +43,27 @@ app.controller("nguoidung-ctrl", function ($scope, $http, $location) {
 
     $scope.create = function () {
         var item = angular.copy($scope.form);
-        var url = `${host}/nguoidung`;
+        var url = `${host}/giamgia`;
         $http.post(url, item).then((resp) => {
 
             $scope.items.push(item);
             $scope.reset();
+            $scope.initialize();
             console.log("Success", resp)
             alert("Thêm thành công!")
         }).catch((err) => {
-            alert("Lỗi thêm người dùng!")
+            alert("Lỗi thêm mã giảm giá!")
             console.log("Error", err)
         });
     }
 
     $scope.update = function () {
         var item = angular.copy($scope.form);
-        var url = `${host}/nguoidung/${$scope.form.nguoiDungId}`;
+        var url = `${host}/giamgia/${$scope.form.giamGiaId}`;
         $http.put(url, item).then((resp) => {
-            var index = $scope.items.findIndex(item => item.nguoiDungId == $scope.form.nguoiDungId);
+            var index = $scope.items.findIndex(item => item.giamGiaId == $scope.form.giamGiaId);
             $scope.items[index] = resp.data;
+            $scope.initialize();
             $(".nav-tabs button:eq(1)").tab("show"); //hiển thị bảng
             console.log("Success", resp)
             alert("Cập nhật thành công!")
@@ -74,17 +73,17 @@ app.controller("nguoidung-ctrl", function ($scope, $http, $location) {
         });
     }
 
-    $scope.delete = function (nguoiDungId) {
-        var url = `${host}/nguoidung/${nguoiDungId}`;
+    $scope.delete = function (giamGiaId) {
+        var url = `${host}/giamgia/${giamGiaId}`;
         $http.delete(url).then((resp) => {
-            var index = $scope.items.findIndex(item => item.nguoiDungId == nguoiDungId);
+            var index = $scope.items.findIndex(item => item.giamGiaId == giamGiaId);
             $scope.items.splice(index, 1);
             $scope.reset();
             console.log("Success", resp)
             alert("Xóa thành công!")
         }).catch((err) => {
             console.log("Error", err)
-            alert("Lỗi xóa người dùng!")
+            alert("Lỗi xóa mã giảm giá!")
         });
     }
 
