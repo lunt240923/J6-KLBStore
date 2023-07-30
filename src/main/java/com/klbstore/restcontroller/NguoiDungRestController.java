@@ -13,40 +13,40 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klbstore.dao.NguoiDungDAO;
 import com.klbstore.model.NguoiDung;
+import com.klbstore.service.NguoiDungService;
 
 @CrossOrigin("*")
 @RestController
 public class NguoiDungRestController {
     @Autowired
-    NguoiDungDAO nguoiDungDAO;
+    NguoiDungService nguoiDungService;
 
     @GetMapping("/rest/nguoidung")
     public List<NguoiDung> getAll(Model model) {
-        return nguoiDungDAO.findAll();
+        return nguoiDungService.getAll();
     }
 
     @GetMapping("/rest/nguoidung/{nguoiDungId}")
     public NguoiDung getOne(@PathVariable ("nguoiDungId") Integer nguoiDungId) {
-        return nguoiDungDAO.findById(nguoiDungId).get();
+        return nguoiDungService.getById(nguoiDungId);
     }
 
     @PostMapping ("/rest/nguoidung")
     public NguoiDung post(@RequestBody NguoiDung nguoiDung){
-        nguoiDungDAO.save(nguoiDung);
+        nguoiDungService.create(nguoiDung);
         return nguoiDung;
     }
 
     @PutMapping ("/rest/nguoidung/{nguoiDungId}")
     public NguoiDung put(@RequestBody NguoiDung nguoiDung, @PathVariable ("nguoiDungId") Integer id){
-        nguoiDungDAO.save(nguoiDung);
+        nguoiDungService.update(nguoiDung);
         return nguoiDung;
     }
 
     @DeleteMapping("/rest/nguoidung/{nguoiDungId}")
 	public void delete(@PathVariable("nguoiDungId") Integer nguoiDungId) {
-		nguoiDungDAO.deleteById(nguoiDungId);
+		nguoiDungService.delete(nguoiDungId);
 	}
     
 }

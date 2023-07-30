@@ -2,7 +2,6 @@ package com.klbstore.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,6 +39,7 @@ public class NguoiDung implements Serializable {
     private String hoTen;
 
     @Column
+    @Temporal(TemporalType.DATE)
     private Date ngaySinh;
 
     @Column
@@ -56,7 +56,7 @@ public class NguoiDung implements Serializable {
     
     @Temporal(TemporalType.DATE)
     @Column
-    private LocalDate ngayDangKy;
+    private Date ngayDangKy = new Date();
     @Column
     private Boolean trangThaiKhoa;
 
