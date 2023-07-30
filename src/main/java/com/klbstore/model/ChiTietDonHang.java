@@ -42,4 +42,7 @@ public class ChiTietDonHang implements Serializable {
     @JoinColumn(name = "sanPhamId")
     private SanPham sanPham;
 
+    @ManyToOne
+    @JoinColumn(name = "mauSacId")
+    private MauSac mauSac;
 }

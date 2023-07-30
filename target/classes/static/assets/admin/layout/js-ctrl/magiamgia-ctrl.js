@@ -63,7 +63,8 @@ app.controller("magiamgia-ctrl", function ($scope, $http, $location) {
         $http.put(url, item).then((resp) => {
             var index = $scope.items.findIndex(item => item.giamGiaId == $scope.form.giamGiaId);
             $scope.items[index] = resp.data;
-            $scope.initialize();
+            $scope.reset();
+            $scope.initialize();  //reload lại items
             $(".nav-tabs button:eq(1)").tab("show"); //hiển thị bảng
             console.log("Success", resp)
             alert("Cập nhật thành công!")

@@ -50,6 +50,6 @@ public class PhieuNhap implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "phieuNhap")
-    private List<ChiTietPhieuNhap> phieuNhapChiTietPhieuNhaps;
+    private List<ChiTietPhieuNhap> chiTietPhieuNhaps;
 
 }

@@ -51,6 +51,7 @@ app.controller("nguoidung-ctrl", function ($scope, $http, $location) {
 
             $scope.items.push(item);
             $scope.reset();
+            $scope.initialize();  //reload lại items
             console.log("Success", resp)
             alert("Thêm thành công!")
         }).catch((err) => {
@@ -65,6 +66,8 @@ app.controller("nguoidung-ctrl", function ($scope, $http, $location) {
         $http.put(url, item).then((resp) => {
             var index = $scope.items.findIndex(item => item.nguoiDungId == $scope.form.nguoiDungId);
             $scope.items[index] = resp.data;
+            $scope.reset();
+            $scope.initialize();  //reload lại items
             $(".nav-tabs button:eq(1)").tab("show"); //hiển thị bảng
             console.log("Success", resp)
             alert("Cập nhật thành công!")
