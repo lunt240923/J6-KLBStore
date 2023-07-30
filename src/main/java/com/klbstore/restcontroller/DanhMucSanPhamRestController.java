@@ -12,39 +12,50 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klbstore.dao.DanhMucSanPhamDAO;
+import com.klbstore.dao.NhomSanPhamDAO;
 import com.klbstore.model.DanhMucSanPham;
+import com.klbstore.model.NhomSanPham;
+import com.klbstore.service.DanhMucService;
 
 @CrossOrigin("*")
 @RestController
 public class DanhMucSanPhamRestController {
     @Autowired
-    DanhMucSanPhamDAO danhMucSanPhamDAO;
+    DanhMucService danhMucService;
+
+    @Autowired
+    NhomSanPhamDAO nhomSanPhamDAO;
+
+    //get all nhóm sản phẩm
+    @GetMapping("/rest/nhomsanpham")
+    public List<NhomSanPham> getAllNhomSanPham() {
+        return nhomSanPhamDAO.findAll();
+    }
 
     @GetMapping("/rest/danhmucsanpham")
     public List<DanhMucSanPham> getAll() {
-        return danhMucSanPhamDAO.findAll();
+        return danhMucService.getAll();
     }
 
     @GetMapping("/rest/danhmucsanpham/{danhMucSanPhamId}")
     public DanhMucSanPham getOne(@PathVariable("danhMucSanPhamId") Integer danhMucSanPhamId) {
-        return danhMucSanPhamDAO.findById(danhMucSanPhamId).get();
+        return danhMucService.getById(danhMucSanPhamId);
     }
 
     @PostMapping("/rest/danhmucsanpham")
     public DanhMucSanPham post(@RequestBody DanhMucSanPham danhmucsanpham) {
-        danhMucSanPhamDAO.save(danhmucsanpham);
+        danhMucService.create(danhmucsanpham);
         return danhmucsanpham;
     }
 
     @PutMapping("/rest/danhmucsanpham/{danhmucsanphamId}")
     public DanhMucSanPham put(@RequestBody DanhMucSanPham danhmucsanpham, @PathVariable("danhmucsanphamId") Integer danhmucsanphamId) {
-        danhMucSanPhamDAO.save(danhmucsanpham);
+        danhMucService.update(danhmucsanpham);
         return danhmucsanpham;
     }
 
     @DeleteMapping("/rest/danhmucsanpham/{danhmucsanphamId}")
     public void delete(@PathVariable("danhmucsanphamId") Integer danhmucsanphamId) {
-        danhMucSanPhamDAO.deleteById(danhmucsanphamId);
+        danhMucService.delete(danhmucsanphamId);
     }
 }
