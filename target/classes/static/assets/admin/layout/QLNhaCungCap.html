@@ -32,77 +32,137 @@
 </div>
 <!-- Default Basic Forms Start -->
 <div class="pd-20 card-box mb-30">
-	
+
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs">
 		<li class="nav-item">
-			<a class="nav-link active" data-toggle="tab" href="#nhacungcap">nhacungcap</a>
+			<button class="btn btn-outline-primary " data-toggle="tab" data-target="#list">Chỉnh Sửa</button>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#1">Menu 1</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#2">Menu 2</a>
+			<button class=" btn btn-outline-primary active" data-toggle="tab" data-target="#table">Danh Sách</button>
 		</li>
 	</ul>
 
 	<!-- Tab panes -->
-	<div class="tab-content">
-		<div class="tab-pane active container" class="nhacungcap">
+	<div class="tab-content" style="padding-top: 18px;">
+		<div class="tab-pane  container" id="list">
 			<form>
 				<div class="form-group row">
 					<label class="col-sm-12 col-md-2 col-form-label">Mã Nhà Cung Cấp</label>
 					<div class="col-sm-12 col-md-10">
-						<input class="form-control" type="text" placeholder="NC0001" />
+						<input ng-model="form.nhaCungCapId" class="form-control" type="text" readonly />
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-12 col-md-2 col-form-label">Tên Nhà Cung Cấp</label>
 					<div class="col-sm-12 col-md-10">
-						<input class="form-control" type="text" placeholder="Asus" />
+						<input ng-model="form.tenNhaCungCap" class="form-control" type="text" required />
 					</div>
 				</div>
-		
+
 				<div class="form-group row">
 					<label class="col-sm-12 col-md-2 col-form-label">Tên Giao Dịch</label>
 					<div class="col-sm-12 col-md-10">
-						<input class="form-control" type="text" placeholder="Mua " />
+						<input ng-model="form.tenGiaoDich" class="form-control" type="text" required />
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-12 col-md-2 col-form-label">Email</label>
 					<div class="col-sm-12 col-md-10">
-						<input class="form-control" type="text" placeholder="lunguyen@gmail.com" />
+						<input ng-model="form.email" class="form-control" type="email" required />
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-12 col-md-2 col-form-label">Số Điện Thoại</label>
 					<div class="col-sm-12 col-md-10">
-						<input class="form-control" type="text" placeholder="XX-XXXX-XXXX" />
+						<input ng-model="form.sdt" class="form-control" type="text" pattern="0[123456789]{9,10}"
+							placeholder="0X-XXXX-XXXX" required />
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-12 col-md-2 col-form-label">Hiển Thị</label>
 					<div class="col-sm-12 col-md-10">
 						<label class="switch">
-							<input type="checkbox">
+							<input ng-model="form.hienThi" type="checkbox">
 							<span class="slider round"></span>
 						</label>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col align-self-end">
-						<button class="btn btn-outline-danger">Xóa</button>
-						<button class="btn btn-outline-warning">Cập Nhập</button>
-						<button class="btn btn-outline-success">Thêm</button>
-		
+						<button ng-click="create()" class="btn btn-outline-success">Thêm</button>
+						<button ng-click="update()" class="btn btn-outline-warning">Cập Nhập</button>
+
+						<button ng-click="reset()" class="btn btn-outline-primary">Reset</button>
 					</div>
 				</div>
 			</form>
 		</div>
-		<div class="tab-pane container" id="1">...</div>
-		<div class="tab-pane container" id="2">...</div>
+		<div class="tab-pane active container" id="table">
+			<table class="data-table table stripe hover nowrap">
+				<thead>
+					<tr>
+						<th class="table-plus datatable-nosort">Mã Nhà Cung Cấp</th>
+						<th>Tên Nhà Cung Cấp</th>
+						<th>Tên Giao Dịch</th>
+						<th>Email</th>
+						<th>Số Điện Thoại</th>
+						<th>Hiển Thị</th>
+						<th class="datatable-nosort">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in pager.items">
+						<td class="table-plus">{{item.nhaCungCapId}}</td>
+						<td>{{item.tenNhaCungCap}}</td>
+						<td>{{item.tenGiaoDich}}</td>
+						<td>{{item.email}}</td>
+						<td>{{item.sdt}}</td>
+						<td>{{item.hienThi ? 'Hiển thị' : 'Ẩn'}}</td>
+						<td>
+							<div class="dropdown">
+								<button class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+									role="button" data-toggle="dropdown">
+									<i class="dw dw-more"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+									<button ng-click="edit(item.nhaCungCapId)" class="dropdown-item"><i
+											class="dw dw-edit2"></i> Chỉnh
+										Sửa</button>
+									<button ng-click="delete(item.nhaCungCapId)" class="dropdown-item"><i
+											class="dw dw-delete-3"></i>
+										Xóa</button>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+
+			</table>
+			<hr style="border: 1px solid lightgray;"/>
+			<div class="row">
+				<div class="col-sm-4" style="font-size: medium;">Trang: {{pager.page +1}} / {{pager.count}}</div>
+				<div class="col-sm-8">
+					<nav aria-label="Page navigation example">
+						<ul class="pagination justify-content-end">
+							<li class="page-item">
+								<button ng-click="pager.first()" class="page-link" tabindex="-1"><i class="dw dw-left-arrow2"></i></button>
+							</li>
+							<li class="page-item">
+								<button ng-click="pager.previous()" class="page-link"><i class="dw dw-left-arrow-4"></i></button>
+							</li>
+							<li class="page-item">
+								<button ng-click="pager.next()" class="page-link"><i class="dw dw-right-arrow-4"></i></button>
+							</li>
+							<li class="page-item">
+								<button ng-click="pager.last()" class="page-link"><i class="dw dw-right-arrow1"></i></button>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
 	</div>
-	
+
 
 </div>
