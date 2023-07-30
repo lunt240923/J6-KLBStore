@@ -12,39 +12,39 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.klbstore.dao.PhieuNhapDAO;
 import com.klbstore.model.PhieuNhap;
+import com.klbstore.service.PhieuNhapService;
 
 @CrossOrigin("*")
 @RestController
 public class PhieuNhapRestController {
     @Autowired
-    PhieuNhapDAO phieuNhapDAO;
+    PhieuNhapService phieuNhapService;
 
     @GetMapping("/rest/phieunhap")
     public List<PhieuNhap> getAll() {
-        return phieuNhapDAO.findAll();
+        return phieuNhapService.getAll();
     }
 
     @GetMapping("/rest/phieunhap/{phieunhapId}")
     public PhieuNhap getOne(@PathVariable("phieunhapId") Integer phieunhapId) {
-        return phieuNhapDAO.findById(phieunhapId).get();
+        return phieuNhapService.getById(phieunhapId);
     }
 
     @PostMapping("/rest/phieunhap")
     public PhieuNhap post(@RequestBody PhieuNhap phieunhap) {
-        phieuNhapDAO.save(phieunhap);
+        phieuNhapService.create(phieunhap);
         return phieunhap;
     }
 
     @PutMapping("/rest/phieunhap/{phieunhapId}")
     public PhieuNhap put(@RequestBody PhieuNhap phieunhap, @PathVariable("phieunhapId") Integer phieunhapId) {
-        phieuNhapDAO.save(phieunhap);
+        phieuNhapService.update(phieunhap);
         return phieunhap;
     }
 
     @DeleteMapping("/rest/phieunhap/{phieunhapId}")
     public void delete(@PathVariable("phieunhapId") Integer phieunhapId) {
-        phieuNhapDAO.deleteById(phieunhapId);
+        phieuNhapService.delete(phieunhapId);
     }
 }

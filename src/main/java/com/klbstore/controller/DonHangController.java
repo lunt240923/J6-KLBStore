@@ -61,17 +61,17 @@ public class DonHangController {
         return "admin/QLDonHang";
     }
     
-    //QL btn Lưu
-    @RequestMapping("admin/donhang/save")
-    public String saveDonHang(@Validated @ModelAttribute("items") DonHang donHang, Errors errors) {
-        if(errors.hasErrors()) {
-            return "admin/QLDonHang";
-        } else {
-            if (donHang.getNgayDatHang() == null) {
-                donHang.setNgayDatHang(java.time.LocalDate.now());
-            }
-            donHangDAO.save(donHang);
-            return "redirect:/admin/donhang";
-        }
-    }
+    // //QL btn Lưu
+    // @RequestMapping("admin/donhang/save")
+    // public String saveDonHang(@Validated @ModelAttribute("items") DonHang donHang, Errors errors) {
+    //     if(errors.hasErrors()) {
+    //         return "admin/QLDonHang";
+    //     } else {
+    //         if (donHang.getNgayDatHang() == null) {
+    //             donHang.setNgayDatHang(java.time.LocalDate.now());
+    //         }
+    //         donHangDAO.save(donHang);
+    //         return "redirect:/admin/donhang";
+    //     }
+    // }
 }

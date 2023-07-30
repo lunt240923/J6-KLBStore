@@ -1,13 +1,12 @@
 package com.klbstore.model;
 
+import java.io.Serializable;
 import java.sql.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
-import java.io.Serializable;
-
-
-
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,7 +27,7 @@ public class DanhGia implements Serializable {
     private Integer danhGiaSanPhamId;
 
     @Column(length = 200)
-    private String tieuDe;
+    private String noiDung;
 
     @Column
     @Temporal(TemporalType.DATE)
@@ -39,11 +38,11 @@ public class DanhGia implements Serializable {
 
     @Column
     private Integer sao;
-
+    
     @ManyToOne
     @JoinColumn(name = "sanPhamId", insertable = false, updatable = false)
     private SanPham sanPham;
-
+    
     @ManyToOne
     @JoinColumn(name = "nguoiDungId")
     private NguoiDung nguoiDung;

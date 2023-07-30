@@ -1,16 +1,12 @@
 package com.klbstore.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
-import java.io.Serializable;
-
-
-
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -36,6 +32,7 @@ public class MauSac implements Serializable {
     @Column(columnDefinition = "varchar(max)")
     private String duongDanAnh;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "sanPhamId")
     private SanPham sanPham;
@@ -43,5 +40,13 @@ public class MauSac implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "mauSac")
     private List<ChiTietSanPham> mauSacChiTietSanPhams;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "mauSac")
+    private List<ChiTietGioHang> mauSacChiTietGioHangs;
+    
+    @JsonIgnore
+    @OneToMany(mappedBy = "mauSac")
+    private List<ChiTietDonHang> mauSacChiTietDonHangs;
 
 }
