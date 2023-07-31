@@ -40,86 +40,207 @@
 			</div>
 
 		</div>
-		<form>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Mã Sản Phẩm</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control" type="text" placeholder="SP0001" />
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Tên Sản Phẩm</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control" type="text" placeholder="Laptop Asus Vivobook" />
-				</div>
-			</div>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<button class="btn btn-outline-primary " data-toggle="tab" data-target="#list">Chỉnh Sửa</button>
+			</li>
+			<li class="nav-item">
+				<button class=" btn btn-outline-primary active" data-toggle="tab" data-target="#table">Danh
+					Sách</button>
+			</li>
+		</ul>
 
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Giá Bán</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control" type="text" placeholder="17.990.000đ" />
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Tồn Kho</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control" value="10" type="number" />
-				</div>
-			</div>
+		<!-- Tab panes -->
+		<div class="tab-content" style="padding-top: 18px;">
+			<div class="tab-pane  container" id="list">
+				<form>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Mã Sản Phẩm</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control" type="text" placeholder="SP0001" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Tên Sản Phẩm</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control" type="text" placeholder="Laptop Asus Vivobook" />
+						</div>
+					</div>
 
-			<div class="form-group row">
-				<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
-					Tạo</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control datetimepicker" placeholder="dd-MM-yyyy" type="text" />
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Danh Mục</label>
-				<div class="col-sm-12 col-md-10">
-					<select class="custom-select col-12">
-						<option selected="">...</option>
-						<option value="1">Asus</option>
-						<option value="2">Dell</option>
-						<option value="3">HP</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Xuất Xứ</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control" type="text" placeholder="Trung Quốc" />
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Mô Tả</label>
-				<div class="col-sm-12 col-md-10">
-					<input class="form-control" type="text" placeholder="i5 8gb" />
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Hình Sản Phẩm</label>
-				<div class="col-sm-12 col-md-10 form-control-file height-auto">
-					Chờ Thêm Ảnh
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Giá Bán</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control" type="text" placeholder="17.990.000đ" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Tồn Kho</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control" value="10" type="number" />
+						</div>
+					</div>
 
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-12 col-md-2 col-form-label">Hiển Thị</label>
-				<div class="col-sm-12 col-md-10">
-					<input type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
-						data-secondary-color="#F56767" />
-				</div>
-			</div>
-			<div class="row">
-				<div class="col align-self-end">
-					<button class="btn btn-outline-danger">Xóa</button>
-					<button class="btn btn-outline-warning">Cập Nhập</button>
-					<button class="btn btn-outline-success">Thêm</button>
+					<div class="form-group row">
+						<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
+							Tạo</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control datetimepicker" placeholder="dd-MM-yyyy" type="text" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Danh Mục</label>
+						<div class="col-sm-12 col-md-10">
+							<select class="custom-select col-12">
+								<option selected="">...</option>
+								<option value="1">Asus</option>
+								<option value="2">Dell</option>
+								<option value="3">HP</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Xuất Xứ</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control" type="text" placeholder="Trung Quốc" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Mô Tả</label>
+						<div class="col-sm-12 col-md-10">
+							<input class="form-control" type="text" placeholder="i5 8gb" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Hình Sản Phẩm</label>
+						<div class="col-sm-12 col-md-10 form-control-file height-auto">
+							Chờ Thêm Ảnh
 
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Hiển Thị</label>
+						<div class="col-sm-12 col-md-10">
+							<input type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
+								data-secondary-color="#F56767" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col align-self-end">
+							<button class="btn btn-outline-danger">Xóa</button>
+							<button class="btn btn-outline-warning">Cập Nhập</button>
+							<button class="btn btn-outline-success">Thêm</button>
+
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="tab-pane active container" id="table">
+				<table class="data-table table stripe hover nowrap">
+					<thead>
+						<tr>
+							<th class="table-plus datatable-nosort">Mã Sản Phẩm</th>
+							<th>Tên Sản Phẩm</th>
+							<th>Giá Bán</th>
+							<th>Tồn Kho</th>
+							<th>Ngày Tạo</th>
+							<th>Danh Mục</th>
+							<th>Xuất Xứ</th>
+							<th>Mô Tả</th>
+							<th>Hình Sản Phẩm</th>
+							<th>Hiển Thị</th>
+							<th class="datatable-nosort">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="table-plus">SP0001</td>
+							<td>Laptop Asus</td>
+							<td>17.690.000đ</td>
+							<td>10</td>
+							<td>25-05-2023</td>
+							<td>LapTop</td>
+							<td>Trung Quốc</td>
+							<td>i5 8Gb RAM</td>
+							<td><img src="" alt=""></td>
+							<td>Hiển Thị</td>
+							<td>
+								<div class="dropdown">
+									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+										href="#" role="button" data-toggle="dropdown">
+										<i class="dw dw-more"></i>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Xem Sản
+											Phẩm</a>
+										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Chỉnh
+											Sửa</a>
+										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
+											Xóa</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="table-plus">SP0001</td>
+							<td>Laptop Asus</td>
+							<td>17.690.000đ</td>
+							<td>10</td>
+							<td>25-05-2023</td>
+							<td>LapTop</td>
+							<td>Trung Quốc</td>
+							<td>i5 8Gb RAM</td>
+							<td><img src="" alt=""></td>
+							<td>Hiển Thị</td>
+							<td>
+								<div class="dropdown">
+									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+										href="#" role="button" data-toggle="dropdown">
+										<i class="dw dw-more"></i>
+									</a>
+									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Xem Sản
+											Phẩm</a>
+										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Chỉnh
+											Sửa</a>
+										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
+											Xóa</a>
+									</div>
+								</div>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+				<hr style="border: 1px solid lightgray;" />
+				<div class="row">
+					<div class="col-sm-4" style="font-size: medium;">Trang: {{pager.page +1}} / {{pager.count}}</div>
+					<div class="col-sm-8">
+						<nav aria-label="Page navigation example">
+							<ul class="pagination justify-content-end">
+								<li class="page-item">
+									<button ng-click="pager.first()" class="page-link" tabindex="-1"><i
+											class="dw dw-left-arrow2"></i></button>
+								</li>
+								<li class="page-item">
+									<button ng-click="pager.previous()" class="page-link"><i
+											class="dw dw-left-arrow-4"></i></button>
+								</li>
+								<li class="page-item">
+									<button ng-click="pager.next()" class="page-link"><i
+											class="dw dw-right-arrow-4"></i></button>
+								</li>
+								<li class="page-item">
+									<button ng-click="pager.last()" class="page-link"><i
+											class="dw dw-right-arrow1"></i></button>
+								</li>
+							</ul>
+						</nav>
+					</div>
 				</div>
 			</div>
-		</form>
+		</div>
 
 	</div>
 

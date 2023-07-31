@@ -38,5 +38,9 @@ app.config(function ($routeProvider) {
         templateUrl: "/assets/admin/layout/QLSanPham.html",
         controller: "sanpham-ctrl"
     })
+    .when("/faq", {
+        templateUrl: "/assets/admin/layout/faq.html"
+        
+    })
     .otherwise({ redirectTo: '/' });
 })

@@ -14,37 +14,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.klbstore.dao.SanPhamDAO;
 import com.klbstore.model.SanPham;
+import com.klbstore.service.SanPhamService;
 
 @CrossOrigin("*")
 @RestController
 public class SanPhamRestController {
     @Autowired
-    SanPhamDAO sanPhamDAO;
+    SanPhamService sanPhamService;
 
     @GetMapping("/rest/sanpham")
     public List<SanPham> getAll() {
-        return sanPhamDAO.findAll();
+        return sanPhamService.getAll();
     }
 
     @GetMapping("/rest/sanpham/{sanPhamId}")
     public SanPham getOne(@PathVariable("sanPhamId") Integer sanPhamId) {
-        return sanPhamDAO.findById(sanPhamId).get();
+        return sanPhamService.getById(sanPhamId);
     }
 
     @PostMapping("/rest/sanpham")
     public SanPham post(@RequestBody SanPham sanPham) {
-        sanPhamDAO.save(sanPham);
+        sanPhamService.create(sanPham);
         return sanPham;
     }
 
     @PutMapping("/rest/sanpham/{sanPhamId}")
     public SanPham put(@RequestBody SanPham sanPham, @PathVariable("sanPhamId") Integer sanPhamId) {
-        sanPhamDAO.save(sanPham);
+        sanPhamService.update(sanPham);
         return sanPham;
     }
 
     @DeleteMapping("/rest/sanpham/{sanPhamId}")
     public void delete(@PathVariable("sanPhamId") Integer sanPhamId) {
-        sanPhamDAO.deleteById(sanPhamId);
+        sanPhamService.delete(sanPhamId);
     }
 }

@@ -3,8 +3,6 @@
 app.controller("phieunhap-ctrl", function ($scope, $http, $location) {
     $scope.form = {};
     $scope.items = [];
-    $scope.nguoiDungs = [];
-    $scope.nhaCungCaps = [];
 
 
     $scope.reset = function () {
