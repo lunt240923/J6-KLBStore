@@ -40,48 +40,58 @@ app.controller("nhacungcap-ctrl", function ($scope, $http, $location) {
     $scope.create = function () {
         var item = angular.copy($scope.form);
         var url = `${host}/nhacungcap`;
-        $http.post(url, item).then((resp) => {
+        if(!$scope.myform.$valid) {
+            return;
+        } else {
+            $http.post(url, item).then((resp) => {
 
-            $scope.items.push(item);
-            $scope.reset();
-            $scope.initialize();  //reload lại items
-            console.log("Success", resp)
-            alert("Thêm thành công!")
-        }).catch((err) => {
-            alert("Lỗi thêm nhà cung cấp!")
-            console.log("Error", err)
-        });
+                $scope.items.push(item);
+                $scope.reset();
+                $scope.initialize();  //reload lại items
+                console.log("Success", resp)
+                alert("Thêm thành công!")
+            }).catch((err) => {
+                alert("Lỗi thêm nhà cung cấp!")
+                console.log("Error", err)
+            });
+        }
     }
 
     $scope.update = function () {
         var item = angular.copy($scope.form);
         var url = `${host}/nhacungcap/${$scope.form.nhaCungCapId}`;
-        $http.put(url, item).then((resp) => {
-            var index = $scope.items.findIndex(item => item.nhaCungCapId == $scope.form.nhaCungCapId);
-            $scope.items[index] = resp.data;
-            $scope.reset();
-            $scope.initialize();  //reload lại items
-            $(".nav-tabs button:eq(1)").tab("show"); //hiển thị bảng
-            console.log("Success", resp)
-            alert("Cập nhật thành công!")
-        }).catch((err) => {
-            console.log("Error", err)
-            alert("Lỗi cập nhật!")
-        });
+        if(!$scope.myform.$valid) {
+            return;
+        } else {
+            $http.put(url, item).then((resp) => {
+                var index = $scope.items.findIndex(item => item.nhaCungCapId == $scope.form.nhaCungCapId);
+                $scope.items[index] = resp.data;
+                $scope.reset();
+                $scope.initialize();  //reload lại items
+                $(".nav-tabs button:eq(1)").tab("show"); //hiển thị bảng
+                console.log("Success", resp)
+                alert("Cập nhật thành công!")
+            }).catch((err) => {
+                console.log("Error", err)
+                alert("Lỗi cập nhật!")
+            });
+        }
     }
 
     $scope.delete = function (nhaCungCapId) {
         var url = `${host}/nhacungcap/${nhaCungCapId}`;
-        $http.delete(url).then((resp) => {
-            var index = $scope.items.findIndex(item => item.nhaCungCapId == nhaCungCapId);
-            $scope.items.splice(index, 1);
-            $scope.reset();
-            console.log("Success", resp)
-            alert("Xóa thành công!")
-        }).catch((err) => {
-            console.log("Error", err)
-            alert("Lỗi xóa nhà cung cấp!")
-        });
+        if(confirm('Xác nhận xóa?')) {
+            $http.delete(url).then((resp) => {
+                var index = $scope.items.findIndex(item => item.nhaCungCapId == nhaCungCapId);
+                $scope.items.splice(index, 1);
+                $scope.reset();
+                console.log("Success", resp)
+                alert("Xóa thành công!")
+            }).catch((err) => {
+                console.log("Error", err)
+                alert("Lỗi xóa nhà cung cấp!")
+            });
+        }
     }
 
 

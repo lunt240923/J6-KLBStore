@@ -17,17 +17,7 @@
 				</nav>
 			</div>
 			<div class="col-md-6 col-sm-12 text-right">
-				<!-- <div class="dropdown">
-					<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-					data-toggle="dropdown">
-					January 2018
-					</a>
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="#">Export List</a>
-						<a class="dropdown-item" href="#">Policies</a>
-						<a class="dropdown-item" href="#">View Assets</a>
-					</div>
-				</div> -->
+				
 			</div>
 		</div>
 	</div>
@@ -54,82 +44,96 @@
 		<!-- Tab panes -->
 		<div class="tab-content" style="padding-top: 18px;">
 			<div class="tab-pane  container" id="list">
-				<form>
+				<form name="myform">
 					<div class="form-group row">
 						<label class="col-sm-12 col-md-2 col-form-label">Mã Sản Phẩm</label>
 						<div class="col-sm-12 col-md-10">
-							<input class="form-control" type="text" placeholder="SP0001" />
+							<input name="sanPhamId" ng-model="form.sanPhamId" class="form-control" type="text" readonly />
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-12 col-md-2 col-form-label">Tên Sản Phẩm</label>
 						<div class="col-sm-12 col-md-10">
-							<input class="form-control" type="text" placeholder="Laptop Asus Vivobook" />
+							<input ng-model="form.tenSanPham" class="form-control" type="text" required />
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label class="col-sm-12 col-md-2 col-form-label">Giá Bán</label>
 						<div class="col-sm-12 col-md-10">
-							<input class="form-control" type="text" placeholder="17.990.000đ" />
+							<input ng-model="form.giaBan" pattern="[0123456789]" class="form-control" type="text" required/>
 						</div>
 					</div>
-					<div class="form-group row">
+					<!-- <div class="form-group row">
 						<label class="col-sm-12 col-md-2 col-form-label">Tồn Kho</label>
 						<div class="col-sm-12 col-md-10">
-							<input class="form-control" value="10" type="number" />
+							<input class="form-control" value="0" type="number" />
 						</div>
-					</div>
+					</div> -->
 
 					<div class="form-group row">
 						<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
 							Tạo</label>
 						<div class="col-sm-12 col-md-10">
-							<input class="form-control datetimepicker" placeholder="dd-MM-yyyy" type="text" />
+							<input ng-model="form.ngayTao" class="form-control" placeholder="dd-MM-yyyy" type="date" required/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-12 col-md-2 col-form-label">Danh Mục</label>
 						<div class="col-sm-12 col-md-10">
-							<select class="custom-select col-12">
-								<option selected="">...</option>
-								<option value="1">Asus</option>
-								<option value="2">Dell</option>
-								<option value="3">HP</option>
+							<select ng-model="form.danhMucSanPham.danhMucSanPhamId" class="custom-select col-12">
+								<option ng-repeat="danhmuc in danhMucSP" ng-value="danhmuc.danhMucSanPhamId">{{danhmuc.tenDanhMucSanPham}}</option>
+								
 							</select>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-12 col-md-2 col-form-label">Xuất Xứ</label>
 						<div class="col-sm-12 col-md-10">
-							<input class="form-control" type="text" placeholder="Trung Quốc" />
+							<input ng-model="form.xuatSu" class="form-control" type="text" required/>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-12 col-md-2 col-form-label">Mô Tả</label>
 						<div class="col-sm-12 col-md-10">
-							<input class="form-control" type="text" placeholder="i5 8gb" />
+							<textarea ng-model="form.moTa" class="form-control" cols="30" rows="10" type="text" ></textarea>
+							
 						</div>
 					</div>
-					<div class="form-group row">
+					<!-- <div class="form-group row">
 						<label class="col-sm-12 col-md-2 col-form-label">Hình Sản Phẩm</label>
 						<div class="col-sm-12 col-md-10 form-control-file height-auto">
 							Chờ Thêm Ảnh
 
 						</div>
+					</div> -->
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Nổi Bật</label>
+						<div class="col-sm-12 col-md-10">
+							<input ng-model="form.noiBat" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
+								data-secondary-color="#F56767" />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-md-2 col-form-label">Còn Hàng</label>
+						<div class="col-sm-12 col-md-10">
+							<input ng-model="form.conHang" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
+								data-secondary-color="#F56767" />
+						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-12 col-md-2 col-form-label">Hiển Thị</label>
 						<div class="col-sm-12 col-md-10">
-							<input type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
+							<input ng-model="form.hienThi" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
 								data-secondary-color="#F56767" />
 						</div>
 					</div>
 					<div class="row">
 						<div class="col align-self-end">
-							<button class="btn btn-outline-danger">Xóa</button>
-							<button class="btn btn-outline-warning">Cập Nhập</button>
-							<button class="btn btn-outline-success">Thêm</button>
+							<button ng-click="create()" type="submit" class="btn btn-outline-success">Thêm</button>
+						<button ng-click="update()" class="btn btn-outline-warning">Cập Nhập</button>
+
+						<button ng-click="reset()" class="btn btn-outline-primary">Reset</button>
 
 						</div>
 					</div>
@@ -142,73 +146,48 @@
 							<th class="table-plus datatable-nosort">Mã Sản Phẩm</th>
 							<th>Tên Sản Phẩm</th>
 							<th>Giá Bán</th>
-							<th>Tồn Kho</th>
 							<th>Ngày Tạo</th>
 							<th>Danh Mục</th>
 							<th>Xuất Xứ</th>
 							<th>Mô Tả</th>
-							<th>Hình Sản Phẩm</th>
+							<!-- <th>Hình Sản Phẩm</th> -->
+							<th>Nổi Bậc</th>
+							<th>Còn Hàng</th>
 							<th>Hiển Thị</th>
 							<th class="datatable-nosort">Action</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="table-plus">SP0001</td>
-							<td>Laptop Asus</td>
-							<td>17.690.000đ</td>
-							<td>10</td>
-							<td>25-05-2023</td>
-							<td>LapTop</td>
-							<td>Trung Quốc</td>
-							<td>i5 8Gb RAM</td>
-							<td><img src="" alt=""></td>
-							<td>Hiển Thị</td>
+						<tr ng-repeat="item in pager.items">
+							<td class="table-plus">{{item.sanPhamId}}</td>
+							<td>{{item.tenSanPham}}</td>
+							<td>{{item.giaBan}}</td>
+							<td>{{item.ngayTao}}</td>
+							<td>{{item.danhMucSanPham.tenDanhMucSanPham}}</td>
+							<td>{{item.xuatSu}}</td>
+							<td>{{item.moTa}}</td>
+							<!-- <td><img src="" alt=""></td> -->
+							<td>{{item.noiBat ? 'Nổi Bật' : 'Không'}}</td>
+							<td>{{item.conHang ? 'Còn' : 'Không'}}</td>
+							<td>{{item.hienThi ? 'Hiển Thị' : 'Ẩn'}}</td>
 							<td>
 								<div class="dropdown">
-									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-										href="#" role="button" data-toggle="dropdown">
+									<button class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+										role="button" data-toggle="dropdown">
 										<i class="dw dw-more"></i>
-									</a>
+									</button>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Xem Sản
-											Phẩm</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Chỉnh
-											Sửa</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
-											Xóa</a>
+										<button ng-click="edit(item.sanPhamId)" class="dropdown-item"><i
+												class="dw dw-edit2"></i> Chỉnh
+											Sửa</button>
+										<button ng-click="delete(item.sanPhamId)" class="dropdown-item"><i
+												class="dw dw-delete-3"></i>
+											Xóa</button>
 									</div>
 								</div>
 							</td>
 						</tr>
-						<tr>
-							<td class="table-plus">SP0001</td>
-							<td>Laptop Asus</td>
-							<td>17.690.000đ</td>
-							<td>10</td>
-							<td>25-05-2023</td>
-							<td>LapTop</td>
-							<td>Trung Quốc</td>
-							<td>i5 8Gb RAM</td>
-							<td><img src="" alt=""></td>
-							<td>Hiển Thị</td>
-							<td>
-								<div class="dropdown">
-									<a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
-										href="#" role="button" data-toggle="dropdown">
-										<i class="dw dw-more"></i>
-									</a>
-									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-										<a class="dropdown-item" href="#"><i class="dw dw-eye"></i> Xem Sản
-											Phẩm</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-edit2"></i> Chỉnh
-											Sửa</a>
-										<a class="dropdown-item" href="#"><i class="dw dw-delete-3"></i>
-											Xóa</a>
-									</div>
-								</div>
-							</td>
-						</tr>
+						
 
 					</tbody>
 				</table>

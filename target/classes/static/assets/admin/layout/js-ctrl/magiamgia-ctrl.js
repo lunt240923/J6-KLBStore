@@ -25,7 +25,7 @@ app.controller("magiamgia-ctrl", function ($scope, $http, $location) {
 
     // load toàn bộ sv từ DB
     $scope.initialize();
-    
+
 
     $scope.edit = function (id) {
         var url = `${host}/giamgia/${id}`;
@@ -44,48 +44,58 @@ app.controller("magiamgia-ctrl", function ($scope, $http, $location) {
     $scope.create = function () {
         var item = angular.copy($scope.form);
         var url = `${host}/giamgia`;
-        $http.post(url, item).then((resp) => {
+        if (!$scope.myform.$valid) {
+            return;
+        } else {
+            $http.post(url, item).then((resp) => {
 
-            $scope.items.push(item);
-            $scope.reset();
-            $scope.initialize();
-            console.log("Success", resp)
-            alert("Thêm thành công!")
-        }).catch((err) => {
-            alert("Lỗi thêm mã giảm giá!")
-            console.log("Error", err)
-        });
+                $scope.items.push(item);
+                $scope.reset();
+                $scope.initialize();
+                console.log("Success", resp)
+                alert("Thêm thành công!")
+            }).catch((err) => {
+                alert("Lỗi thêm mã giảm giá!")
+                console.log("Error", err)
+            });
+        }
     }
 
     $scope.update = function () {
         var item = angular.copy($scope.form);
         var url = `${host}/giamgia/${$scope.form.giamGiaId}`;
-        $http.put(url, item).then((resp) => {
-            var index = $scope.items.findIndex(item => item.giamGiaId == $scope.form.giamGiaId);
-            $scope.items[index] = resp.data;
-            $scope.reset();
-            $scope.initialize();  //reload lại items
-            $(".nav-tabs button:eq(1)").tab("show"); //hiển thị bảng
-            console.log("Success", resp)
-            alert("Cập nhật thành công!")
-        }).catch((err) => {
-            console.log("Error", err)
-            alert("Lỗi cập nhật!")
-        });
+        if (!$scope.myform.$valid) {
+            return;
+        } else {
+            $http.put(url, item).then((resp) => {
+                var index = $scope.items.findIndex(item => item.giamGiaId == $scope.form.giamGiaId);
+                $scope.items[index] = resp.data;
+                $scope.reset();
+                $scope.initialize();  //reload lại items
+                $(".nav-tabs button:eq(1)").tab("show"); //hiển thị bảng
+                console.log("Success", resp)
+                alert("Cập nhật thành công!")
+            }).catch((err) => {
+                console.log("Error", err)
+                alert("Lỗi cập nhật!")
+            });
+        }
     }
 
     $scope.delete = function (giamGiaId) {
         var url = `${host}/giamgia/${giamGiaId}`;
-        $http.delete(url).then((resp) => {
-            var index = $scope.items.findIndex(item => item.giamGiaId == giamGiaId);
-            $scope.items.splice(index, 1);
-            $scope.reset();
-            console.log("Success", resp)
-            alert("Xóa thành công!")
-        }).catch((err) => {
-            console.log("Error", err)
-            alert("Lỗi xóa mã giảm giá!")
-        });
+        if (confirm('Xác nhận xóa?')) {
+            $http.delete(url).then((resp) => {
+                var index = $scope.items.findIndex(item => item.giamGiaId == giamGiaId);
+                $scope.items.splice(index, 1);
+                $scope.reset();
+                console.log("Success", resp)
+                alert("Xóa thành công!")
+            }).catch((err) => {
+                console.log("Error", err)
+                alert("Lỗi xóa mã giảm giá!")
+            });
+        }
     }
 
 
