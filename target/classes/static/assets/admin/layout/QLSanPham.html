@@ -43,101 +43,108 @@
 
 		<!-- Tab panes -->
 		<div class="tab-content" style="padding-top: 18px;">
-			<div class="tab-pane  container" id="list">
-				<form name="myform">
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Mã Sản Phẩm</label>
-						<div class="col-sm-12 col-md-10">
-							<input name="sanPhamId" ng-model="form.sanPhamId" class="form-control" type="text" readonly />
-						</div>
+			<div class="tab-pane container" id="list">
+				<div class="row">
+					<div class="col-md-3">
+						<img src="/assets/admin/vendors/images/img.jpg" alt="" width="100%"">
 					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Tên Sản Phẩm</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.tenSanPham" class="form-control" type="text" required />
-						</div>
+					<div class="col-md-8">
+						<form name="myform">
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Mã Sản Phẩm</label>
+								<div class="col-sm-12 col-md-10">
+									<input name="sanPhamId" ng-model="form.sanPhamId" class="form-control" type="text" readonly />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Tên Sản Phẩm</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.tenSanPham" class="form-control" type="text" required />
+								</div>
+							</div>
+		
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Giá Bán</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.giaBan" pattern="[0123456789]" class="form-control" type="text" required/>
+								</div>
+							</div>
+							<!-- <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Tồn Kho</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" value="0" type="number" />
+								</div>
+							</div> -->
+		
+							<div class="form-group row">
+								<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
+									Tạo</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.ngayTao" class="form-control" placeholder="dd-MM-yyyy" type="date" required/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Danh Mục</label>
+								<div class="col-sm-12 col-md-10">
+									<select ng-model="form.danhMucSanPham.danhMucSanPhamId" class="custom-select col-12">
+										<option ng-repeat="danhmuc in danhMucSP" ng-value="danhmuc.danhMucSanPhamId">{{danhmuc.tenDanhMucSanPham}}</option>
+										
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Xuất Xứ</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.xuatSu" class="form-control" type="text" required/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Mô Tả</label>
+								<div class="col-sm-12 col-md-10">
+									<textarea ng-model="form.moTa" class="form-control" cols="30" rows="10" type="text" ></textarea>
+									
+								</div>
+							</div>
+							<!-- <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Hình Sản Phẩm</label>
+								<div class="col-sm-12 col-md-10 form-control-file height-auto">
+									Chờ Thêm Ảnh
+		
+								</div>
+							</div> -->
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Nổi Bật</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.noiBat" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
+										data-secondary-color="#F56767" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Còn Hàng</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.conHang" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
+										data-secondary-color="#F56767" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Hiển Thị</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.hienThi" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
+										data-secondary-color="#F56767" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="col align-self-end">
+									<button ng-click="create()" type="submit" class="btn btn-outline-success">Thêm</button>
+								<button ng-click="update()" class="btn btn-outline-warning">Cập Nhập</button>
+		
+								<button ng-click="reset()" class="btn btn-outline-primary">Reset</button>
+		
+								</div>
+							</div>
+						</form>
 					</div>
-
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Giá Bán</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.giaBan" pattern="[0123456789]" class="form-control" type="text" required/>
-						</div>
-					</div>
-					<!-- <div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Tồn Kho</label>
-						<div class="col-sm-12 col-md-10">
-							<input class="form-control" value="0" type="number" />
-						</div>
-					</div> -->
-
-					<div class="form-group row">
-						<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
-							Tạo</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.ngayTao" class="form-control" placeholder="dd-MM-yyyy" type="date" required/>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Danh Mục</label>
-						<div class="col-sm-12 col-md-10">
-							<select ng-model="form.danhMucSanPham.danhMucSanPhamId" class="custom-select col-12">
-								<option ng-repeat="danhmuc in danhMucSP" ng-value="danhmuc.danhMucSanPhamId">{{danhmuc.tenDanhMucSanPham}}</option>
-								
-							</select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Xuất Xứ</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.xuatSu" class="form-control" type="text" required/>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Mô Tả</label>
-						<div class="col-sm-12 col-md-10">
-							<textarea ng-model="form.moTa" class="form-control" cols="30" rows="10" type="text" ></textarea>
-							
-						</div>
-					</div>
-					<!-- <div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Hình Sản Phẩm</label>
-						<div class="col-sm-12 col-md-10 form-control-file height-auto">
-							Chờ Thêm Ảnh
-
-						</div>
-					</div> -->
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Nổi Bật</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.noiBat" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
-								data-secondary-color="#F56767" />
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Còn Hàng</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.conHang" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
-								data-secondary-color="#F56767" />
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Hiển Thị</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.hienThi" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
-								data-secondary-color="#F56767" />
-						</div>
-					</div>
-					<div class="row">
-						<div class="col align-self-end">
-							<button ng-click="create()" type="submit" class="btn btn-outline-success">Thêm</button>
-						<button ng-click="update()" class="btn btn-outline-warning">Cập Nhập</button>
-
-						<button ng-click="reset()" class="btn btn-outline-primary">Reset</button>
-
-						</div>
-					</div>
-				</form>
+				</div>
 			</div>
 			<div class="tab-pane active container" id="table">
 				<table class="data-table table stripe hover nowrap">

@@ -48,6 +48,7 @@ public class DonHang implements Serializable {
     @Column
     private Boolean tinhTrangGiaoHang;
 
+    
     @ManyToOne
     @JoinColumn(name = "nguoiDungId")
     private NguoiDung nguoiDung;
