@@ -12,5 +12,90 @@
                 “Death is like the wind – always by my side.”
             </p>
         </div>
+
+    </div>
+
+</div>
+<div class="min-height-200px">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="title">
+                    <h4>Thống Kê</h4>
+                </div>
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="/home">Trang Chủ</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Thống Kê
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Simple Datatable start -->
+    <div class="pd-20 card-box mb-30">
+            <div class="pd-20">
+                <h4 class="text-blue h4">Thống Kê Doanh Thu</h4>
+            </div>
+            <div class="pb-20">
+                <table class="data-table table stripe hover nowrap">
+                    <thead>
+                        <tr>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Giá Bán</th>
+                            <th>Số Lượng</th>
+                            <th>Thành Tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ct in ctDonHang">
+
+                            <td>{{ct.sanPham.tenSanPham}}</td>
+                            <td>{{ct.giaBan + ' VND'}}</td>
+                            <td>{{ct.soLuong}}</td>
+                            <td>{{ct.giaBan * ct.soLuong + ' VND'}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <hr style="border: 1px solid lightgray;" />
+                <div class="row">
+                    <div class="col-sm-4">
+                        Tổng Tiền: {{tongTien + ' VND'}}
+                    </div>
+                    <div class="col-sm-4" style="font-size: medium;">Trang: {{pager.page +1}} / {{pager.count+ 1}}</div>
+
+                    <div class="col-sm-4">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-end">
+                                <li class="page-item">
+                                    <button ng-click="pager.first()" class="page-link" tabindex="-1"><i
+                                            class="dw dw-left-arrow2"></i></button>
+                                </li>
+                                <li class="page-item">
+                                    <button ng-click="pager.previous()" class="page-link"><i
+                                            class="dw dw-left-arrow-4"></i></button>
+                                </li>
+                                <li class="page-item">
+                                    <button ng-click="pager.next()" class="page-link"><i
+                                            class="dw dw-right-arrow-4"></i></button>
+                                </li>
+                                <li class="page-item">
+                                    <button ng-click="pager.last()" class="page-link"><i
+                                            class="dw dw-right-arrow1"></i></button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <!-- Simple Datatable End -->
+        
     </div>
 </div>
