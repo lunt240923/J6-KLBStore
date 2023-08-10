@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -68,51 +69,51 @@ public class SanPham implements Serializable {
     private NguoiDung nguoiDung;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<MauSac> sanPhamMauSacs;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham" , fetch = FetchType.EAGER)
     private List<ChiTietSanPham> sanPhamChiTietSanPhams;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<CauHinhLaptop> sanPhamCauHinhLaptops;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<CauHinhDienThoai> sanPhamCauHinhDienThoais;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<ChiTietDonHang> sanPhamChiTietDonHangs;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<ChiTietPhieuXuat> sanPhamChiTietPhieuXuats;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<DanhGia> sanPhamDanhGias;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<AnhSanPham> sanPhamAnhSanPhams;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<ChiTietPhieuNhap> sanPhamChiTietPhieuNhaps;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<ChiTietGioHang> sanPhamChiTietGioHangs;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<GiamGiaSanPham> sanPhamGiamGiaSanPhams;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
+    @OneToMany(mappedBy = "sanPham", fetch = FetchType.EAGER)
     private List<GiamGiaTrucTiep> sanPhamGiamGiaTrucTieps;
 
 }

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -61,25 +62,25 @@ public class NguoiDung implements Serializable {
     private Boolean trangThaiKhoa;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "nguoiDung")
+    @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.EAGER)
     private List<DonHang> nguoiDungDonHangs;
     @JsonIgnore
-    @OneToMany(mappedBy = "nguoiDung")
+    @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.EAGER)
     private List<SanPham> nguoiDungSanPhams;
     @JsonIgnore
-    @OneToMany(mappedBy = "nguoiDung")
+    @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.EAGER)
     private List<PhieuXuat> nguoiDungPhieuXuats;
     @JsonIgnore
-    @OneToMany(mappedBy = "nguoiDung")
+    @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.EAGER)
     private List<DanhGia> nguoiDungDanhGias;
     @JsonIgnore
-    @OneToMany(mappedBy = "nguoiDung")
+    @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.EAGER)
     private List<PhieuNhap> nguoiDungPhieuNhaps;
     @JsonIgnore
-    @OneToMany(mappedBy = "nguoiDung")
+    @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.EAGER)
     private List<GioHang> nguoiDungGioHangs;
     @JsonIgnore
-    @OneToMany(mappedBy = "nguoiDung")
+    @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.EAGER)
     private List<MaXacNhan> nguoiDungMaXacNhans;
     @OneToMany(mappedBy = "nguoiDung")
     private List<HoatDongDangNhap> nguoiDungHoatDongDangNhaps;

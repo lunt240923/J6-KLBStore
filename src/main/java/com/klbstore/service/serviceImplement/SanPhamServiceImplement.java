@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.klbstore.dao.ChiTietSanPhamDAO;
 import com.klbstore.dao.SanPhamDAO;
+import com.klbstore.model.ChiTietSanPham;
 import com.klbstore.model.SanPham;
 import com.klbstore.service.SanPhamService;
 
@@ -13,6 +15,9 @@ import com.klbstore.service.SanPhamService;
 public class SanPhamServiceImplement implements SanPhamService{
     @Autowired
     SanPhamDAO sanPhamDAO;
+
+    @Autowired
+    ChiTietSanPhamDAO chiTietSanPhamDAO;
 
     @Override
     public List<SanPham> getAll() {

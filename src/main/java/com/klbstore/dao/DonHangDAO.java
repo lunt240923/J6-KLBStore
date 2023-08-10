@@ -11,4 +11,6 @@ import com.klbstore.model.ThongKeDoanhThu;
 
 public interface DonHangDAO extends JpaRepository<DonHang, Integer> {
    
+    
+
 }

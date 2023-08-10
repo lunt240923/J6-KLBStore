@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 
 import java.io.Serializable;
 
@@ -55,15 +56,15 @@ public class GiamGia implements Serializable {
     private Boolean hienThi;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "giamGia")
+    @OneToMany(mappedBy = "giamGia", fetch = FetchType.EAGER)
     private List<GiamGiaSanPham> giamGiaGiamGiaSanPhams;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "giamGia")
+    @OneToMany(mappedBy = "giamGia", fetch = FetchType.EAGER)
     private List<GiamGiaDanhMuc> giamGiaGiamGiaDanhMucs;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "giamGia")
+    @OneToMany(mappedBy = "giamGia", fetch = FetchType.EAGER)
     private List<GiamGiaDanhMucCon> giamGiaGiamGiaDanhMucCons;
 
 }

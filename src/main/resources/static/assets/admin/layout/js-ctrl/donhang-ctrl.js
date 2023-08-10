@@ -3,7 +3,7 @@ app.controller("donhang-ctrl", function ($scope, $http, $location) {
     $scope.form = {};
     $scope.items = [];
     $scope.ctDonHang = [];
-    $scope.ctDonHangbyId = {};
+    $scope.ctDonHangById = {};
 
     $scope.reset = function () {
         $scope.form = {
@@ -39,28 +39,29 @@ app.controller("donhang-ctrl", function ($scope, $http, $location) {
     // load toàn bộ sv từ DB
     $scope.initialize();
 
+    // $scope.edit = function (id) {
+    //     var url = `${host}/donhang/${id}`;
+    //     $http.get(url).then((resp) => {
+    //         $scope.form = resp.data;
+    //         $scope.form.ngayDatHang = new Date($scope.form.ngayDatHang);
+    //         $scope.form.ngayGiaoHang = new Date($scope.form.ngayGiaoHang);
+    //         $scope.getctDonHangByDonHangId($scope.form.donhangId);
+    //         $(".nav-tabs button:eq(0)").tab("show");
+    //         console.log("Success", resp)
+    //     }).catch((err) => {
+    //         console.log("Error", err)
+    //     });
+
+    // }
+
+
+    //lấy chi tiet don hang theo mã đơn hang
     $scope.edit = function (id) {
-        var url = `${host}/donhang/${id}`;
+        var url = `${host}/${id}/ctdonhang`;
         $http.get(url).then((resp) => {
             $scope.form = resp.data;
-            $scope.form.ngayDatHang = new Date($scope.form.ngayDatHang);
-            $scope.form.ngayGiaoHang = new Date($scope.form.ngayGiaoHang);
-            $scope.getctDonHangByDonHangId($scope.form.donhangId);
-            $(".nav-tabs button:eq(0)").tab("show");
-            console.log("Success", resp)
-        }).catch((err) => {
-            console.log("Error", err)
-        });
-
-    }
-
-    //lấy chi tiet don hang theo đơn hang
-    $scope.getctDonHangByDonHangId = function (id) {
-        var url = `${host}/donhang/${id}/ctdonhang`;
-        $http.get(url).then((resp) => {
-            $scope.ctDonHangbyId = resp.data;
-            
-            console.log("Success", resp)
+            $(".nav-tabs button:eq(0)").tab("show"); //hiển thị chi tiết
+            console.log("Id", resp)
         }).catch((err) => {
             console.log("Error", err)
         });

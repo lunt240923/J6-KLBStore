@@ -2,6 +2,7 @@ package com.klbstore.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,7 +16,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ThongKeDoanhThu implements Serializable{
     @Id
-     LocalDate ngay;
-     ChiTietDonHang ctdh;
-
+     String tenSanPham;
+     Date ngayDatHang;
+    Double giaBan;
+    Integer soLuong;
 }

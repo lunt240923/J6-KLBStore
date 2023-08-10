@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 
 import java.io.Serializable;
 
@@ -31,7 +32,7 @@ public class NhomSanPham implements Serializable {
     private String tenNhomSanPham;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "nhomSanPham")
+    @OneToMany(mappedBy = "nhomSanPham", fetch = FetchType.EAGER)
     private Set<DanhMucSanPham> danhMucSanPhams;
 
 }

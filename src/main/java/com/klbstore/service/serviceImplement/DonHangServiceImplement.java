@@ -2,6 +2,7 @@ package com.klbstore.service.serviceImplement;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,19 @@ public class DonHangServiceImplement implements DonHangService {
         donHangDAO.deleteById(donhangId);
     }
 
-     @Override
+
+    @Override
+    public List<ChiTietDonHang> getAllChiTietDonHang() {
+        return chiTietDonHangDAO.findAll();
+    }
+
+
+    @Override
+    public void deleteCTDonHang(Integer chiTietDonHangId) {
+        chiTietDonHangDAO.deleteById(chiTietDonHangId);
+    }
+
+    @Override
     public List<ChiTietDonHang> getCTDonhangByIdDonHang(Integer donHangId) {
         DonHang donHang = donHangDAO.findById(donHangId).orElse(null);
         if (donHang != null) {
@@ -54,16 +67,9 @@ public class DonHangServiceImplement implements DonHangService {
           return donHang.getDonHangChiTietDonHangs();
         }
         return Collections.emptyList();
-      }
-
-    @Override
-    public List<ChiTietDonHang> getAllChiTietDonHang() {
-        return chiTietDonHangDAO.findAll();
     }
 
-    @Override
-    public void deleteCTDonHang(Integer chiTietDonHangId) {
-        chiTietDonHangDAO.deleteById(chiTietDonHangId);
-    }
+
+    
     
 }

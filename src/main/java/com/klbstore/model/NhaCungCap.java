@@ -2,6 +2,7 @@ package com.klbstore.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 
 import java.io.Serializable;
 
@@ -47,7 +48,7 @@ public class NhaCungCap implements Serializable {
     private Boolean hienThi;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "nhaCungCap")
+    @OneToMany(mappedBy = "nhaCungCap", fetch = FetchType.EAGER)
     private Set<PhieuNhap> phieuNhaps;
 
 }

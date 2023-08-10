@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 
 import java.io.Serializable;
 
@@ -38,13 +39,13 @@ public class DanhMucSanPham implements Serializable {
     private NhomSanPham nhomSanPham;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "danhMucSanPham")
+    @OneToMany(mappedBy = "danhMucSanPham", fetch = FetchType.EAGER)
     private List<DanhMucCon> danhMucSanPhamDanhMucCons;
     @JsonIgnore
-    @OneToMany(mappedBy = "danhMucSanPham")
+    @OneToMany(mappedBy = "danhMucSanPham", fetch = FetchType.EAGER)
     private List<SanPham> danhMucSanPhamSanPhams;
     @JsonIgnore
-    @OneToMany(mappedBy = "danhMucSanPham")
+    @OneToMany(mappedBy = "danhMucSanPham", fetch = FetchType.EAGER)
     private List<GiamGiaDanhMuc> danhMucSanPhamGiamGiaDanhMucs;
 
 }

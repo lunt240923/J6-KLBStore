@@ -44,6 +44,9 @@
                 <h4 class="text-blue h4">Thống Kê Doanh Thu</h4>
             </div>
             <div class="pb-20">
+                <div>
+                    <canvas id="myChart"></canvas>
+                  </div>
                 <table class="data-table table stripe hover nowrap">
                     <thead>
                         <tr>
@@ -57,9 +60,9 @@
                         <tr ng-repeat="ct in ctDonHang">
 
                             <td>{{ct.sanPham.tenSanPham}}</td>
-                            <td>{{ct.giaBan + ' VND'}}</td>
+                            <td>{{ct.giaBan | number:0}} ₫</td>
                             <td>{{ct.soLuong}}</td>
-                            <td>{{ct.giaBan * ct.soLuong + ' VND'}}</td>
+                            <td>{{ct.giaBan * ct.soLuong | number:0}} ₫</td>
 
                         </tr>
                     </tbody>
@@ -67,7 +70,7 @@
                 <hr style="border: 1px solid lightgray;" />
                 <div class="row">
                     <div class="col-sm-4">
-                        Tổng Tiền: {{tongTien + ' VND'}}
+                        Tổng Tiền: {{tongTien | number:0}} ₫
                     </div>
                     <div class="col-sm-4" style="font-size: medium;">Trang: {{pager.page +1}} / {{pager.count+ 1}}</div>
 

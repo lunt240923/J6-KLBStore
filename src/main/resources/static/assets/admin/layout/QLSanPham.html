@@ -45,87 +45,96 @@
 		<div class="tab-content" style="padding-top: 18px;">
 			<div class="tab-pane  container" id="list">
 				<form name="myform">
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Mã Sản Phẩm</label>
-						<div class="col-sm-12 col-md-10">
-							<input name="sanPhamId" ng-model="form.sanPhamId" class="form-control" type="text" readonly />
+					<div class="row">
+						<div class="col-sm-4">
+							<img ng-repeat="i in ctsanpham" ng-src="{{i.mauSac.duongDanAnh}}" alt="">
+							<label for="anh" class="col-form-label">Ảnh</label>
+							<input type="file" name="poster" id="anh">
 						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Tên Sản Phẩm</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.tenSanPham" class="form-control" type="text" required />
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Giá Bán</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.giaBan" pattern="[0123456789]" class="form-control" type="text" required/>
-						</div>
-					</div>
-					<!-- <div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Tồn Kho</label>
-						<div class="col-sm-12 col-md-10">
-							<input class="form-control" value="0" type="number" />
-						</div>
-					</div> -->
-
-					<div class="form-group row">
-						<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
-							Tạo</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.ngayTao" class="form-control" placeholder="dd-MM-yyyy" type="date" required/>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Danh Mục</label>
-						<div class="col-sm-12 col-md-10">
-							<select ng-model="form.danhMucSanPham.danhMucSanPhamId" class="custom-select col-12">
-								<option ng-repeat="danhmuc in danhMucSP" ng-value="danhmuc.danhMucSanPhamId">{{danhmuc.tenDanhMucSanPham}}</option>
-								
-							</select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Xuất Xứ</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.xuatSu" class="form-control" type="text" required/>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Mô Tả</label>
-						<div class="col-sm-12 col-md-10">
-							<textarea ng-model="form.moTa" class="form-control" cols="30" rows="10" type="text" ></textarea>
-							
-						</div>
-					</div>
-					<!-- <div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Hình Sản Phẩm</label>
-						<div class="col-sm-12 col-md-10 form-control-file height-auto">
-							Chờ Thêm Ảnh
-
-						</div>
-					</div> -->
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Nổi Bật</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.noiBat" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
-								data-secondary-color="#F56767" />
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Còn Hàng</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.conHang" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
-								data-secondary-color="#F56767" />
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-md-2 col-form-label">Hiển Thị</label>
-						<div class="col-sm-12 col-md-10">
-							<input ng-model="form.hienThi" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
-								data-secondary-color="#F56767" />
+						<div class="col-sm-8">
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Mã Sản Phẩm</label>
+								<div class="col-sm-12 col-md-10">
+									<input name="sanPhamId" ng-model="form.sanPhamId" class="form-control" type="text" readonly />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Tên Sản Phẩm</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.tenSanPham" class="form-control" type="text" required />
+								</div>
+							</div>
+		
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Giá Bán</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.giaBan" pattern="[0123456789]" class="form-control" type="text" required/>
+								</div>
+							</div>
+							<!-- <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Tồn Kho</label>
+								<div class="col-sm-12 col-md-10">
+									<input class="form-control" value="0" type="number" />
+								</div>
+							</div> -->
+		
+							<div class="form-group row">
+								<label for="example-datetime-local-input" class="col-sm-12 col-md-2 col-form-label">Ngày
+									Tạo</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.ngayTao" class="form-control" placeholder="dd-MM-yyyy" type="date" required/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Danh Mục</label>
+								<div class="col-sm-12 col-md-10">
+									<select ng-model="form.danhMucSanPham.danhMucSanPhamId" class="custom-select col-12">
+										<option ng-repeat="danhmuc in danhMucSP" ng-value="danhmuc.danhMucSanPhamId">{{danhmuc.tenDanhMucSanPham}}</option>
+										
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Xuất Xứ</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.xuatSu" class="form-control" type="text" required/>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Mô Tả</label>
+								<div class="col-sm-12 col-md-10">
+									<textarea ng-model="form.moTa" class="form-control" cols="30" rows="10" type="text" ></textarea>
+									
+								</div>
+							</div>
+							<!-- <div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Hình Sản Phẩm</label>
+								<div class="col-sm-12 col-md-10 form-control-file height-auto">
+									Chờ Thêm Ảnh
+		
+								</div>
+							</div> -->
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Nổi Bật</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.noiBat" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
+										data-secondary-color="#F56767" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Còn Hàng</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.conHang" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
+										data-secondary-color="#F56767" />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-12 col-md-2 col-form-label">Hiển Thị</label>
+								<div class="col-sm-12 col-md-10">
+									<input ng-model="form.hienThi" type="checkbox" checked class="switch-btn" data-size="small" data-color="#0099ff"
+										data-secondary-color="#F56767" />
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="row">
@@ -148,8 +157,8 @@
 							<th>Giá Bán</th>
 							<th>Ngày Tạo</th>
 							<th>Danh Mục</th>
-							<th>Xuất Xứ</th>
-							<th>Mô Tả</th>
+							<!-- <th>Xuất Xứ</th> -->
+							<!-- <th>Mô Tả</th> -->
 							<!-- <th>Hình Sản Phẩm</th> -->
 							<th>Nổi Bậc</th>
 							<th>Còn Hàng</th>
@@ -161,11 +170,13 @@
 						<tr ng-repeat="item in pager.items">
 							<td class="table-plus">{{item.sanPhamId}}</td>
 							<td>{{item.tenSanPham}}</td>
-							<td>{{item.giaBan}}</td>
+							<td>{{item.giaBan | number:0}} ₫</td>
 							<td>{{item.ngayTao}}</td>
 							<td>{{item.danhMucSanPham.tenDanhMucSanPham}}</td>
-							<td>{{item.xuatSu}}</td>
-							<td>{{item.moTa}}</td>
+							
+							<!-- <td>{{item.xuatSu}}</td> -->
+							<!-- <td>{{item.sanPhamCauHinhDienThoais[0].cpu}}</td>
+							<td>{{item.moTa}}</td> -->
 							<!-- <td><img src="" alt=""></td> -->
 							<td>{{item.noiBat ? 'Nổi Bật' : 'Không'}}</td>
 							<td>{{item.conHang ? 'Còn' : 'Không'}}</td>
@@ -178,8 +189,7 @@
 									</button>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 										<button ng-click="edit(item.sanPhamId)" class="dropdown-item"><i
-												class="dw dw-edit2"></i> Chỉnh
-											Sửa</button>
+												class="dw dw-edit2"></i> Xem Chi Tiết</button>
 										<button ng-click="delete(item.sanPhamId)" class="dropdown-item"><i
 												class="dw dw-delete-3"></i>
 											Xóa</button>

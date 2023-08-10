@@ -2,6 +2,7 @@ package com.klbstore.service;
 
 import java.util.List;
 
+import com.klbstore.model.ChiTietSanPham;
 import com.klbstore.model.SanPham;
 
 public interface SanPhamService {

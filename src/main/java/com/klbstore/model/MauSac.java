@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,15 +39,15 @@ public class MauSac implements Serializable {
     private SanPham sanPham;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "mauSac")
+    @OneToMany(mappedBy = "mauSac", fetch = FetchType.EAGER)
     private List<ChiTietSanPham> mauSacChiTietSanPhams;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "mauSac")
+    @OneToMany(mappedBy = "mauSac", fetch = FetchType.EAGER)
     private List<ChiTietGioHang> mauSacChiTietGioHangs;
     
     @JsonIgnore
-    @OneToMany(mappedBy = "mauSac")
+    @OneToMany(mappedBy = "mauSac", fetch = FetchType.EAGER)
     private List<ChiTietDonHang> mauSacChiTietDonHangs;
 
 }

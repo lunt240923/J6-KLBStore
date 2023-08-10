@@ -52,7 +52,7 @@ public class DonHangRestController {
     }
 
     // lấy chi tiết đơn hàng theo id đơn hàng
-    @GetMapping("/rest/{donhangid}/ctdonhang")
+    @GetMapping("/rest/ctdonhang/{donhangid}")
     public ResponseEntity<List<ChiTietDonHang>> getCTDonhangByIdDonHang(@PathVariable("donhangid") Integer donhangid) {
         List<ChiTietDonHang> products = donHangService.getCTDonhangByIdDonHang(donhangid);
         return ResponseEntity.ok(products);

@@ -4,7 +4,7 @@ app.controller("sanpham-ctrl", function ($scope, $http, $location) {
     $scope.form = {};
     $scope.items = [];
     $scope.danhMucSP = [];
-
+    $scope.ctsanpham={};
 
     $scope.reset = function () {
         $scope.form = null;
@@ -26,6 +26,8 @@ app.controller("sanpham-ctrl", function ($scope, $http, $location) {
         }).catch((err) => {
             console.log("Error", err)
         });
+
+        
     }
 
 
@@ -44,6 +46,13 @@ app.controller("sanpham-ctrl", function ($scope, $http, $location) {
             console.log("Error", err)
         });
 
+        var urlll = `${host}/ctsanpham/${id}`;
+        $http.get(urlll).then((result) => {
+            $scope.ctsanpham = result.data;
+            console.log("CT", result);
+        }).catch((err) => {
+            console.log("Error", err)
+        });
     }
 
     
